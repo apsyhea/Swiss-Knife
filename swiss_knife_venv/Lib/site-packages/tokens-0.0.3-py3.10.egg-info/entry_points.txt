@@ -1,0 +1,3 @@
+[console_scripts]
+token-info = tokeninfo.__init__:help
+
