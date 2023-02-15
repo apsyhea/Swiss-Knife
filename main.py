@@ -35,7 +35,7 @@ async def process_city(message: types.Message):
     if not message.text.startswith('/weather'):
         return
 # Never do that xD
-    city = message.text.replace('/weather', '').lstrip().replace('@fsdfsabot', '').lstrip()
+    city = message.text.replace('/weather', '').lstrip().replace('@a_SwissKnifeBot', '').lstrip()
 
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
