@@ -7,7 +7,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text, Command
 
-API_TOKEN = tokens.bot_token
+API_TOKEN = tokens.test_token
 W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
@@ -18,11 +18,10 @@ storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
 
-#@dp.message_handler(commands=['help'], state='*')
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):
     print(message.text)
-    dp.register_message_handler(process_city)
+    dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
     await message.answer("""
 Hello, I'm a Swiss Knife bot. To display the current weather - type: /weather (city) 
@@ -30,14 +29,13 @@ Hello, I'm a Swiss Knife bot. To display the current weather - type: /weather (c
 \nTo convert the exchange rate - enter /currency (number) (the currency you are converting to) (the currency you are converting to)
 \nFor example: /currency 20 usd eur""")
 
-#@dp.message_handler(lambda message: message.text not in ['cancel'], state='*')
-#@dp.message_handler(lambda message: message.text.lower() not in ['cancel'], state='*')
-async def process_city(message: Message):
+@dp.message_handler(Command("weather"))
+async def process_city(message: types.Message):
     print(message.text)
     if not message.text.startswith('/weather'):
         return
 
-    city = message.text[len('/weather'):].strip()
+    city = message.text.replace('/weather', '').lstrip().replace('@fsdfsabot', '').lstrip()
 
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
