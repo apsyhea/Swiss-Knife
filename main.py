@@ -17,30 +17,28 @@ bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):
-    print(message.text)
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
     await message.answer("""
-Hello, I'm a Swiss Knife bot. To display the current weather - type: /weather (city) 
-\nFor example /weather Tokyo:
-\nTo convert the exchange rate - enter /currency (number) (the currency you are converting to) (the currency you are converting to)
-\nFor example: /currency 20 usd eur""")
+Hello, I'm a Swiss Knife bot. 
+\nTo display the current weather 
+type: /weather [city] 
+For example /weather Tokyo:
+\nTo convert the exchange rate 
+type: /currency [number][currency][currency]
+For example: /currency 1 eur usd""")
 
 @dp.message_handler(Command("weather"))
-async def process_city(message: types.Message):
-    print(message.text)
-    if not message.text.startswith('/weather'):
-        return
-# Never do that xD
-    city = message.text.replace('/weather', '').lstrip().replace('@a_SwissKnifeBot', '').lstrip()
+#async def currency_convert(message: types.Message):
+async def process_city(message: Message):
+    city = message.get_args()
 
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
             if resp.status != 200:
-                await bot.send_message(chat_id=message.chat.id, text="Sorry, I couldn't find the weather for that city. Please try again.")
+                await message.reply("Sorry, I couldn't find the weather for that city. Please try again.")
                 return
 
             weather = await resp.json()
@@ -51,17 +49,13 @@ async def process_city(message: types.Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await bot.send_message(chat_id=message.chat.id, text=f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
+            await message.reply(f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: types.Message):
-    print(message.text)
-    if not message.text.startswith('/currency'):
-        return
-
-    input_parts = message.text.split()[1:]
+    input_parts = message.get_args().split()[0:]
     if len(input_parts) != 3:
-        await bot.send_message(chat_id=message.chat.id, text="Please enter the amount, source currency, and target currency separated by spaces.")
+        await message.reply("Please enter the amount, source currency, and target currency separated by spaces.")
         return
 
     amount, source_currency, target_currency = input_parts
@@ -69,20 +63,20 @@ async def currency_convert(message: types.Message):
     try:
         amount = float(amount)
     except ValueError:
-        await bot.send_message(chat_id=message.chat.id, text="Please enter a valid number for the amount.")
+        await message.reply("Please enter a valid number for the amount.")
         return
 
     url = f"https://v6.exchangerate-api.com/v6/{C_TOKEN}/latest/{source_currency.upper()}"
 
     response = requests.get(url)
     if response.status_code != 200:
-        await bot.send_message(chat_id=message.chat.id, text="Sorry, something went wrong with the currency conversion.")
+        await message.reply("Sorry, something went wrong with the currency conversion.")
         return
     data = response.json()
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await bot.send_message(chat_id=message.chat.id, text=f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
+    await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
