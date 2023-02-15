@@ -1,10 +1,11 @@
 import tokens
 import logging
-import requests
 import aiohttp
-from aiogram import Bot, Dispatcher, executor, types
+import requests
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import Message
+from aiogram.dispatcher.filters import Text, Command
 
 API_TOKEN = tokens.bot_token
 W_TOKEN = tokens.weather_token
@@ -16,14 +17,23 @@ bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-@dp.message_handler(commands=['start'], state=None)
-@dp.message_handler(commands=['help'], state=None)
+
+#@dp.message_handler(commands=['help'], state='*')
+@dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):
+    print(message.text)
+    dp.register_message_handler(process_city)
+    dp.register_message_handler(currency_convert, commands=['currency'])
+    await message.answer("""
+Hello, I'm a Swiss Knife bot. To display the current weather - type: /weather (city) 
+\nFor example /weather Tokyo:
+\nTo convert the exchange rate - enter /currency (number) (the currency you are converting to) (the currency you are converting to)
+\nFor example: /currency 20 usd eur""")
 
-    await message.answer("Hello i am Swiss Knife bot")
-
-@dp.message_handler(lambda message: message.text.lower() != 'cancel', state=None)
+#@dp.message_handler(lambda message: message.text not in ['cancel'], state='*')
+#@dp.message_handler(lambda message: message.text.lower() not in ['cancel'], state='*')
 async def process_city(message: Message):
+    print(message.text)
     if not message.text.startswith('/weather'):
         return
 
@@ -45,8 +55,9 @@ async def process_city(message: Message):
 
             await bot.send_message(chat_id=message.chat.id, text=f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
 
-@dp.message_handler(lambda message: message.text.lower() != 'cancel', state=None)
+@dp.message_handler(Command("currency"))
 async def currency_convert(message: types.Message):
+    print(message.text)
     if not message.text.startswith('/currency'):
         return
 
