@@ -34,7 +34,7 @@ async def process_city(message: types.Message):
     print(message.text)
     if not message.text.startswith('/weather'):
         return
-
+# Never do that xD
     city = message.text.replace('/weather', '').lstrip().replace('@fsdfsabot', '').lstrip()
 
     async with aiohttp.ClientSession() as session:
