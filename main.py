@@ -85,9 +85,8 @@ async def currency_convert(message: Message):
 @dp.message_handler(commands=['ping'])
 async def ping(message: Message):
     ip_address = message.get_args()
-
     result = subprocess.run(['ping','-c','5',ip_address], capture_output=True)
-
+    
     if result.returncode == 0:
         response = f'Ping result for {ip_address}:\n\n{result.stdout.decode()}'
     else:
