@@ -93,7 +93,7 @@ async def ping(message: Message):
     else:
         response = f'Ping failed for {ip_address}:\n\n{result.stderr.decode()}'
 
-    await message.reply(message.chat.id, response, parse_mode=ParseMode.HTML)
+    await message.reply(response)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
