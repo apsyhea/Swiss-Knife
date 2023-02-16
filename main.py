@@ -30,10 +30,12 @@ type: /weather [city]
 For example /weather Tokyo:
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
-For example: /currency 1 eur usd""")
+For example: /currency 1 eur usd
+\nUse ping to check network availability
+type: /ping [host or ip]
+""")
 
 @dp.message_handler(Command("weather"))
-#async def currency_convert(message: types.Message):
 async def process_city(message: Message):
     city = message.get_args()
 
@@ -54,7 +56,7 @@ async def process_city(message: Message):
             await message.reply(f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
 
 @dp.message_handler(Command("currency"))
-async def currency_convert(message: types.Message):
+async def currency_convert(message: Message):
     input_parts = message.get_args().split()[0:]
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by spaces.")
@@ -81,7 +83,7 @@ async def currency_convert(message: types.Message):
     await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
 
 @dp.message_handler(commands=['ping'])
-async def ping(message: types.Message):
+async def ping(message: Message):
     ip_address = message.get_args()
 
     result = subprocess.run(['ping','-c','5',ip_address], capture_output=True)
@@ -91,7 +93,7 @@ async def ping(message: types.Message):
     else:
         response = f'Ping failed for {ip_address}:\n\n{result.stderr.decode()}'
 
-    await bot.send_message(message.chat.id, response, parse_mode=ParseMode.HTML)
+    await message.reply(message.chat.id, response, parse_mode=ParseMode.HTML)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
