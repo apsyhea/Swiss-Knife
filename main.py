@@ -2,12 +2,13 @@ import tokens
 import logging
 import aiohttp
 import requests
+import subprocess
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor, types
-from aiogram.types import Message
+from aiogram.types import Message, ParseMode
 from aiogram.dispatcher.filters import Text, Command
 
-API_TOKEN = tokens.bot_token
+API_TOKEN = tokens.test_token
 W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
@@ -21,6 +22,7 @@ dp = Dispatcher(bot, storage=storage)
 async def cmd_start(message: Message):
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
+    dp.register_message_handler(ping, commands=['ping'])
     await message.answer("""
 Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
@@ -77,6 +79,19 @@ async def currency_convert(message: types.Message):
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
     await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
+
+@dp.message_handler(commands=['ping'])
+async def ping(message: types.Message):
+    ip_address = message.get_args()
+
+    result = subprocess.run(['ping', ip_address], capture_output=True)
+
+    if result.returncode == 0:
+        response = f'Ping result for {ip_address}:\n\n{result.stdout.decode()}'
+    else:
+        response = f'Ping failed for {ip_address}:\n\n{result.stderr.decode()}'
+
+    await bot.send_message(message.chat.id, response, parse_mode=ParseMode.HTML)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
