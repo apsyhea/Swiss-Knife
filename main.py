@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import Message, ParseMode
 from aiogram.dispatcher.filters import Text, Command
 
-API_TOKEN = tokens.test_token
+API_TOKEN = tokens.bot_token
 W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
@@ -84,7 +84,7 @@ async def currency_convert(message: types.Message):
 async def ping(message: types.Message):
     ip_address = message.get_args()
 
-    result = subprocess.run(['ping', ip_address], capture_output=True)
+    result = subprocess.run(['ping','-c','5',ip_address], capture_output=True)
 
     if result.returncode == 0:
         response = f'Ping result for {ip_address}:\n\n{result.stdout.decode()}'
