@@ -23,7 +23,7 @@ dp = Dispatcher(bot, storage=storage)
 async def cmd_start(message: Message):
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
-    dp.register_message_handler(ping, commands=['ping'])
+    dp.register_message_handler(ping, commands=['warmon'])
     await message.answer("""
 Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
