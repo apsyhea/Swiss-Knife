@@ -1,12 +1,11 @@
-import time
-import datetime
 import tokens
 import logging
 import aiohttp
 import requests
+from datetime import date
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram import Bot, Dispatcher, executor, types
-from aiogram.types import Message, ParseMode
+from aiogram import Bot, Dispatcher, executor
+from aiogram.types import Message
 from aiogram.dispatcher.filters import Text, Command
 
 API_TOKEN = tokens.bot_token
@@ -14,6 +13,8 @@ W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
 logging.basicConfig(level=logging.INFO)
+
+today = date.today()
 
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
@@ -53,7 +54,7 @@ async def process_city(message: Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
+            await message.reply(f"As of {today}\n\nWeather in {city}, {country}: \nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
@@ -80,19 +81,20 @@ async def currency_convert(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
+    await message.reply(f"As of {today}\n\n{amount} {source_currency.upper()} is {result} {target_currency.upper()}")
 
 @dp.message_handler(Command('warmon'))
 async def warmon(message: Message):
-    # Set up the API call with today's date
-    today = datetime.date.today()
-    date_str = today.strftime('%Y-%m-%d')
-    url = f'https://russianwarship.rip/api/v2/statistics?offset=0&limit=50&date_from={date_str}&date_to={date_str}'
-
+    
+    url = 'https://russianwarship.rip/api/v2/statistics/latest'
     response = requests.get(url)
+    if response.status_code != 200:
+        await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
+        return
+
     data = response.json()
 
-    stats = data['data']['records'][0]['stats']
+    stats = data['data']['stats']
     stats_str = f"Personnel Units: {stats['personnel_units']}\n"
     stats_str += f"Tanks: {stats['tanks']}\n"
     stats_str += f"Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
@@ -108,9 +110,7 @@ async def warmon(message: Message):
     stats_str += f"Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    # Send the statistics to the user
-    await message.reply(stats_str)
-
+    await message.reply(f'As of {today}\n\n{stats_str}')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
