@@ -83,7 +83,7 @@ async def currency_convert(message: Message):
     result = amount * rate
     await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
 
-@dp.message_handler(Command('varmon'))
+@dp.message_handler(Command('warmon'))
 async def varmon(message: Message):
     # Set up the API call with today's date
     today = datetime.date.today()
