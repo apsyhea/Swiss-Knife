@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text, Command
 
-API_TOKEN = tokens.bot_token
+API_TOKEN = tokens.test_token
 W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
@@ -54,7 +54,7 @@ async def process_city(message: Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"As of {today}\n\nWeather in {city}, {country}: \nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
+            await message.reply(f"📅 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n🌬️ Description: {description} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
@@ -81,7 +81,7 @@ async def currency_convert(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"As of {today}\n\n{amount} {source_currency.upper()} is {result} {target_currency.upper()}")
+    await message.reply(f"📅 <b>As of {today}</b>\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
 
 @dp.message_handler(Command('warmon'))
 async def warmon(message: Message):
@@ -110,7 +110,7 @@ async def warmon(message: Message):
     stats_str += f"Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'As of {today}\n\n{stats_str}')
+    await message.reply(f'📅 <b>As of {today}\n\n🐷 loss of pigs:</b>\n<code>{stats_str}</code>', parse_mode="HTML")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
