@@ -8,7 +8,7 @@ from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
 from aiogram.dispatcher.filters import Text, Command
 
-API_TOKEN = tokens.test_token
+API_TOKEN = tokens.bot_token
 W_TOKEN = tokens.weather_token
 C_TOKEN = tokens.cur_token
 
