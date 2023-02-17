@@ -11,7 +11,7 @@ Here is a short description of what the bot can do now.
 
 type: /weather [city] 
 
-For example /weather Tokyo:
+For example `/weather Tokyo`
 
 ---
 
@@ -33,7 +33,7 @@ Output:
 
 type: /currency [number][currency][currency]
 
-For example: /currency 1 eur usd
+For example: `/currency 1 eur usd`
 
 ---
 
@@ -43,14 +43,14 @@ Output:
 
 💵 1.0 EUR is 1.0678 💳 USD
 
-### Use /warmon to display rashist casualty statistics for the day
+### Use `/warmon` to display rashist casualty statistics for the day
 
 Output:
 
 📅 As of 2023-02-17
 
 🐷 loss of pigs:
-```
+
 
 Personnel Units: 141260
 
@@ -79,4 +79,4 @@ UAV Systems: 2013
 Special Military Equip: 221
 
 ATGM/SRBM Systems: 4
-```
+
