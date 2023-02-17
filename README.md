@@ -1,5 +1,5 @@
 # Swiss-Knife-Bot
-> The Swiss Army Knife is a versatile tool for every need. 
+The Swiss Army Knife is a versatile tool for every need. 
 
 Right now there are not many functions, but over time the functionality will expand. 
 
