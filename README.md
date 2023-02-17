@@ -5,7 +5,7 @@ Right now there are not many functions, but over time the functionality will exp
 
 Here is a short description of what the bot can do now.
 
-> To display the current weather 
+### To display the current weather 
 
 ---
 
@@ -27,7 +27,7 @@ Output:
 
 💨 Wind Speed: 1.54 m/s
 
-> To convert the exchange rate 
+### To convert the exchange rate 
 
 ---
 
@@ -43,7 +43,7 @@ Output:
 
 💵 1.0 EUR is 1.0678 💳 USD
 
-> Use /warmon to display rashist casualty statistics for the day
+### Use /warmon to display rashist casualty statistics for the day
 
 Output:
 
