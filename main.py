@@ -23,7 +23,7 @@ dp = Dispatcher(bot, storage=storage)
 async def cmd_start(message: Message):
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
-    dp.register_message_handler(ping, commands=['warmon'])
+    dp.register_message_handler(warmon, commands=['warmon'])
     await message.answer("""
 Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
@@ -32,8 +32,7 @@ For example /weather Tokyo:
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
 For example: /currency 1 eur usd
-\nUse ping to check network availability
-type: /ping [host or ip]
+\nUse /warmon to display rashist casualty statistics for the day
 """)
 
 @dp.message_handler(Command("weather"))
@@ -84,7 +83,7 @@ async def currency_convert(message: Message):
     await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
 
 @dp.message_handler(Command('warmon'))
-async def varmon(message: Message):
+async def warmon(message: Message):
     # Set up the API call with today's date
     today = datetime.date.today()
     date_str = today.strftime('%Y-%m-%d')
@@ -110,7 +109,7 @@ async def varmon(message: Message):
     stats_str += f"ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
     # Send the statistics to the user
-    await bot.send_message(message.chat.id, stats_str)
+    await message.reply(stats_str)
 
 
 if __name__ == '__main__':
