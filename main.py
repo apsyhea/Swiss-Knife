@@ -1,8 +1,9 @@
+import time
+import datetime
 import tokens
 import logging
 import aiohttp
 import requests
-import subprocess
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import Message, ParseMode
@@ -82,17 +83,35 @@ async def currency_convert(message: Message):
     result = amount * rate
     await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
 
-@dp.message_handler(commands=['ping'])
-async def ping(message: Message):
-    ip_address = message.get_args()
-    result = subprocess.run(['ping','-c','5',ip_address], capture_output=True)
-    
-    if result.returncode == 0:
-        response = f'Ping result for {ip_address}:\n\n{result.stdout.decode()}'
-    else:
-        response = f'Ping failed for {ip_address}:\n\n{result.stderr.decode()}'
+@dp.message_handler(Command('varmon'))
+async def varmon(message: Message):
+    # Set up the API call with today's date
+    today = datetime.date.today()
+    date_str = today.strftime('%Y-%m-%d')
+    url = f'https://russianwarship.rip/api/v2/statistics?offset=0&limit=50&date_from={date_str}&date_to={date_str}'
 
-    await message.reply(response)
+    response = requests.get(url)
+    data = response.json()
+
+    stats = data['data']['records'][0]['stats']
+    stats_str = f"Personnel Units: {stats['personnel_units']}\n"
+    stats_str += f"Tanks: {stats['tanks']}\n"
+    stats_str += f"Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
+    stats_str += f"Artillery Systems: {stats['artillery_systems']}\n"
+    stats_str += f"MLRS: {stats['mlrs']}\n"
+    stats_str += f"AA Warfare Systems: {stats['aa_warfare_systems']}\n"
+    stats_str += f"Planes: {stats['planes']}\n"
+    stats_str += f"Helicopters: {stats['helicopters']}\n"
+    stats_str += f"Vehicles Fuel Tanks: {stats['vehicles_fuel_tanks']}\n"
+    stats_str += f"Warships Cutters: {stats['warships_cutters']}\n"
+    stats_str += f"Cruise Missiles: {stats['cruise_missiles']}\n"
+    stats_str += f"UAV Systems: {stats['uav_systems']}\n"
+    stats_str += f"Special Military Equip: {stats['special_military_equip']}\n"
+    stats_str += f"ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
+
+    # Send the statistics to the user
+    await bot.send_message(message.chat.id, stats_str)
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
