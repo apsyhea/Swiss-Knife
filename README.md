@@ -17,7 +17,7 @@ For example `/weather Tokyo`
 
 Output:
 
-📅 As of 2023-02-17
+🗓 As of 2023-02-17
 
 🌤️ Weather in Tokyo, JP: 
 
@@ -39,7 +39,7 @@ For example: `/currency 1 eur usd`
 
 Output:
 
-📅 As of 2023-02-17
+🗓 As of 2023-02-17
 
 💵 1.0 EUR is 1.0678 💳 USD
 
@@ -47,36 +47,21 @@ Output:
 
 Output:
 
-📅 As of 2023-02-17
+🗓 As of 2023-02-19
 
 🐷 loss of pigs:
-
-
-Personnel Units: 141260
-
-Tanks: 3298
-
-Armoured Fighting Vehicles: 6520
-
-Artillery Systems: 2322
-
-MLRS: 467
-
-AA Warfare Systems: 241
-
-Planes: 298
-
-Helicopters: 287
-
-Vehicles Fuel Tanks: 5187
-
-Warships Cutters: 18
-
-Cruise Missiles: 871
-
-UAV Systems: 2013
-
-Special Military Equip: 221
-
-ATGM/SRBM Systems: 4
+• Personnel Units: 142270
+• Tanks: 3303
+• Armoured Fighting Vehicles: 6533
+• Artillery Systems: 2326
+• MLRS: 469
+• AA Warfare Systems: 243
+• Planes: 298
+• Helicopters: 287
+• Vehicles Fuel Tanks: 5196
+• Warships Cutters: 18
+• Cruise Missiles: 871
+• UAV Systems: 2016
+• Special Military Equip: 223
+• ATGM/SRBM Systems: 4
 
