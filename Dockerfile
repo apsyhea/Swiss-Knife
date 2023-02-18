@@ -6,9 +6,8 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install TimeZone 
-RUN ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
-RUN echo "Europe/Kiev" > /etc/timezone
+# Set TimeZone Europe/Kiev
+RUN ln -fs /usr/share/zoneinfo/Europe/Kyiv /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y python3-pip python3-venv iputils-ping  
