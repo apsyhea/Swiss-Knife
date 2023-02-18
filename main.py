@@ -54,7 +54,7 @@ async def process_city(message: Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"📅 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n🌬️ Description: {description} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+            await message.reply(f"📅 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
