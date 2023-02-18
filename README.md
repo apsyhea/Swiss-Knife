@@ -51,17 +51,30 @@ Output:
 
 🐷 loss of pigs:
 • Personnel Units: 142270
+
 • Tanks: 3303
+
 • Armoured Fighting Vehicles: 6533
+
 • Artillery Systems: 2326
+
 • MLRS: 469
+
 • AA Warfare Systems: 243
+
 • Planes: 298
+
 • Helicopters: 287
+
 • Vehicles Fuel Tanks: 5196
+
 • Warships Cutters: 18
+
 • Cruise Missiles: 871
+
 • UAV Systems: 2016
+
 • Special Military Equip: 223
+
 • ATGM/SRBM Systems: 4
 
