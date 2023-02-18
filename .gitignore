@@ -1,3 +1,5 @@
+__pycache__/
+venv/
 tokens.py
 test.py
 git-token
