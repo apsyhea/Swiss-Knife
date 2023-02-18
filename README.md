@@ -23,7 +23,7 @@ Output:
 
 🌡️ Temperature: 3.68°C 
 
-🌬️ Description: clear sky 
+☁️ Description: clear sky 
 
 💨 Wind Speed: 1.54 m/s
 
