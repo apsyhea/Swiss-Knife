@@ -54,7 +54,7 @@ async def process_city(message: Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"📅 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+            await message.reply(f"🗓 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
@@ -62,7 +62,6 @@ async def currency_convert(message: Message):
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by spaces.")
         return
-
     amount, source_currency, target_currency = input_parts
 
     try:
@@ -81,7 +80,7 @@ async def currency_convert(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"📅 <b>As of {today}</b>\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
+    await message.reply(f"🗓 <b>As of {today}</b>\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
 
 @dp.message_handler(Command('warmon'))
 async def warmon(message: Message):
@@ -95,22 +94,22 @@ async def warmon(message: Message):
     data = response.json()
 
     stats = data['data']['stats']
-    stats_str = f"Personnel Units: {stats['personnel_units']}\n"
-    stats_str += f"Tanks: {stats['tanks']}\n"
-    stats_str += f"Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
-    stats_str += f"Artillery Systems: {stats['artillery_systems']}\n"
-    stats_str += f"MLRS: {stats['mlrs']}\n"
-    stats_str += f"AA Warfare Systems: {stats['aa_warfare_systems']}\n"
-    stats_str += f"Planes: {stats['planes']}\n"
-    stats_str += f"Helicopters: {stats['helicopters']}\n"
-    stats_str += f"Vehicles Fuel Tanks: {stats['vehicles_fuel_tanks']}\n"
-    stats_str += f"Warships Cutters: {stats['warships_cutters']}\n"
-    stats_str += f"Cruise Missiles: {stats['cruise_missiles']}\n"
-    stats_str += f"UAV Systems: {stats['uav_systems']}\n"
-    stats_str += f"Special Military Equip: {stats['special_military_equip']}\n"
-    stats_str += f"ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
+    stats_str = f"• Personnel Units: {stats['personnel_units']}\n"
+    stats_str += f"• Tanks: {stats['tanks']}\n"
+    stats_str += f"• Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
+    stats_str += f"• Artillery Systems: {stats['artillery_systems']}\n"
+    stats_str += f"• MLRS: {stats['mlrs']}\n"
+    stats_str += f"• AA Warfare Systems: {stats['aa_warfare_systems']}\n"
+    stats_str += f"• Planes: {stats['planes']}\n"
+    stats_str += f"• Helicopters: {stats['helicopters']}\n"
+    stats_str += f"• Vehicles Fuel Tanks: {stats['vehicles_fuel_tanks']}\n"
+    stats_str += f"• Warships Cutters: {stats['warships_cutters']}\n"
+    stats_str += f"• Cruise Missiles: {stats['cruise_missiles']}\n"
+    stats_str += f"• UAV Systems: {stats['uav_systems']}\n"
+    stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
+    stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'📅 <b>As of {today}\n\n🐷 loss of pigs:</b>\n<code>{stats_str}</code>', parse_mode="HTML")
+    await message.reply(f'🗓 <b>As of {today}\n\n🐷 loss of pigs:</b>\n<code>{stats_str}</code>', parse_mode="HTML")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
