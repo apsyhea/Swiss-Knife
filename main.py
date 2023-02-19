@@ -27,14 +27,15 @@ async def cmd_start(message: Message):
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
     dp.register_message_handler(warmon, commands=['warmon'])
+    dp.register_message_handler(time, commands=['time'])
     await message.answer("""
 Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
 type: /weather [city] 
 For example /weather Tokyo:
 \nTo view the current time in different time zones
-type: /timedate [city]
-For example /weather Tokyo:
+type: /time [city]
+For example /time Tokyo:
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
 For example: /currency 1 eur usd
@@ -70,7 +71,7 @@ async def process_city(message: Message):
                     await message.reply(f"🗓 <b>As of {ams_str}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
 
-@dp.message_handler(Command("timedate"))
+@dp.message_handler(Command("time"))
 async def process_city(message: Message):
     city = message.get_args()
 
