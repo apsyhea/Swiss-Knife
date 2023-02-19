@@ -1,3 +1,4 @@
+import pytz
 import tokens
 import logging
 import aiohttp
@@ -15,7 +16,7 @@ C_TOKEN = tokens.cur_token
 logging.basicConfig(level=logging.INFO)
 
 today = date.today()
-time = datetime.now().strftime("%H:%M:%S")
+#time = datetime.now().strftime("%H:%M:%S")
 
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
@@ -48,14 +49,22 @@ async def process_city(message: Message):
                 return
 
             weather = await resp.json()
-
             city = weather["name"]
-            country = weather["sys"]["country"]
-            temp = weather["main"]["temp"]
-            description = weather["weather"][0]["description"]
-            wind_speed = weather["wind"]["speed"]
+            for timezone in pytz.all_timezones:
+                if city in timezone:
+                    parts = timezone.split('/')
+                    continent = parts[0]
+                    loc_dt = datetime.now()
+                    city_dt = pytz.timezone(f'{continent}/'+city)
+                    ams_dt = loc_dt.astimezone(city_dt)
+                    time = '%Y-%m-%d | %H:%M:%S'
+                    ams_str = ams_dt.strftime(time)
+                    country = weather["sys"]["country"]
+                    temp = weather["main"]["temp"]
+                    description = weather["weather"][0]["description"]
+                    wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"🗓 <b>As of {today} | {time}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+                    await message.reply(f"🗓 <b>As of {ams_str}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
@@ -81,7 +90,7 @@ async def currency_convert(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"🗓 <b>As of {today} | {time}</b>\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
+    await message.reply(f"🗓 <b>As of {today}</b>\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
 
 @dp.message_handler(Command('warmon'))
 async def warmon(message: Message):
@@ -110,7 +119,7 @@ async def warmon(message: Message):
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'🗓 <b>As of {today} | {time}\n\n🐷 loss of pigs:</b>\n<i>{stats_str}</i>', parse_mode="HTML")
+    await message.reply(f'🗓 <b>As of {today}\n\n🐷 loss of pigs:</b>\n<i>{stats_str}</i>', parse_mode="HTML")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
