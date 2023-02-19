@@ -29,18 +29,18 @@ async def cmd_start(message: Message):
     dp.register_message_handler(warmon, commands=['warmon'])
     dp.register_message_handler(time, commands=['time'])
     await message.answer("""
-Hello, I'm a Swiss Knife bot. 
+<b>Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
 type: /weather [city] 
-For example /weather Tokyo:
+For example <code>/weather Tokyo</code>
 \nTo view the current time in different time zones
 type: /time [city]
-For example /time Tokyo:
+For example <code>/time Tokyo</code>
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
-For example: /currency 1 eur usd
-\nUse /warmon to display rashist casualty statistics for the day
-""")
+For example: <code>/currency 1 eur usd</code>
+\nUse /warmon to display rashist casualty statistics for the day</b>
+""",parse_mode="HTML")
 
 @dp.message_handler(Command("weather"))
 async def process_city(message: Message):
