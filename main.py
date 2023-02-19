@@ -32,6 +32,9 @@ Hello, I'm a Swiss Knife bot.
 \nTo display the current weather 
 type: /weather [city] 
 For example /weather Tokyo:
+\nTo view the current time in different time zones
+type: /timedate [city]
+For example /weather Tokyo:
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
 For example: /currency 1 eur usd
@@ -65,6 +68,30 @@ async def process_city(message: Message):
                     wind_speed = weather["wind"]["speed"]
 
                     await message.reply(f"🗓 <b>As of {ams_str}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+
+
+@dp.message_handler(Command("timedate"))
+async def process_city(message: Message):
+    city = message.get_args()
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
+            if resp.status != 200:
+                await message.reply("Sorry, I couldn't find a temporary implementation for this city. Please try again.")
+                return
+
+            weather = await resp.json()
+            city = weather["name"]
+            for timezone in pytz.all_timezones:
+                if city in timezone:
+                    parts = timezone.split('/')
+                    continent = parts[0]
+                    loc_dt = datetime.now()
+                    city_dt = pytz.timezone(f'{continent}/'+city)
+                    ams_dt = loc_dt.astimezone(city_dt)
+                    time = '%H:%M:%S'
+                    ams_str = ams_dt.strftime(time)
+                    await message.reply(f"<b>🕐 Current time in {city}: {ams_str}\n🗓 Date: {today}\n🗺 Timezone: {timezone}</b>", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
