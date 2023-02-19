@@ -72,7 +72,7 @@ async def process_city(message: Message):
 
 
 @dp.message_handler(Command("time"))
-async def process_city(message: Message):
+async def time(message: Message):
     city = message.get_args()
 
     async with aiohttp.ClientSession() as session:
