@@ -3,6 +3,7 @@ import tokens
 import logging
 import aiohttp
 import requests
+from timezone import timezones
 from datetime import date, datetime
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor
@@ -16,7 +17,7 @@ C_TOKEN = tokens.cur_token
 logging.basicConfig(level=logging.INFO)
 
 today = date.today()
-#time = datetime.now().strftime("%H:%M:%S")
+time = datetime.now().strftime("%H:%M:%S")
 
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
@@ -27,18 +28,14 @@ async def cmd_start(message: Message):
     dp.register_message_handler(process_city, commands=['weather'])
     dp.register_message_handler(currency_convert, commands=['currency'])
     dp.register_message_handler(warmon, commands=['warmon'])
-    dp.register_message_handler(time, commands=['time'])
     await message.answer("""
 <b>Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
 type: /weather [city] 
-For example: <code>/weather Tokyo</code>
-\nTo view the current time in different time zones
-type: /time [city]
-For example: <code>/time Tokyo</code>
+For example <code>/weather Tokyo</code>
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
-For example: <code>/currency 1 eur usd</code>
+For example: /currency 1 eur usd
 \nUse /warmon to display rashist casualty statistics for the day</b>
 """,parse_mode="HTML")
 
@@ -53,46 +50,17 @@ async def process_city(message: Message):
                 return
 
             weather = await resp.json()
+
             city = weather["name"]
-            for timezone in pytz.all_timezones:
-                if city in timezone:
-                    parts = timezone.split('/')
-                    continent = parts[0]
-                    loc_dt = datetime.now()
-                    city_dt = pytz.timezone(f'{continent}/'+city)
-                    ams_dt = loc_dt.astimezone(city_dt)
-                    time = '%Y-%m-%d | %H:%M:%S'
-                    ams_str = ams_dt.strftime(time)
-                    country = weather["sys"]["country"]
-                    temp = weather["main"]["temp"]
-                    description = weather["weather"][0]["description"]
-                    wind_speed = weather["wind"]["speed"]
+            country = weather["sys"]["country"]
+            temp = weather["main"]["temp"]
+            description = weather["weather"][0]["description"]
+            wind_speed = weather["wind"]["speed"]
 
-                    await message.reply(f"🗓 <b>As of {ams_str}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+            #await message.reply(f"ð <b>As of {today}</b>\n\nð¤ Weather in {city}, {country}: \nð¡ Temperature: {temp}°C \n☁ Description: {description.title()} \nð¨ Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
+            await message.reply(f"🗓 <b>As of {today}</b>\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
 
-@dp.message_handler(Command("time"))
-async def time(message: Message):
-    city = message.get_args()
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
-            if resp.status != 200:
-                await message.reply("Sorry, I couldn't find a timezone for this city. Please try again.")
-                return
-
-            weather = await resp.json()
-            city = weather["name"]
-            for timezone in pytz.all_timezones:
-                if city in timezone:
-                    parts = timezone.split('/')
-                    continent = parts[0]
-                    loc_dt = datetime.now()
-                    city_dt = pytz.timezone(f'{continent}/'+city)
-                    ams_dt = loc_dt.astimezone(city_dt)
-                    time = '%H:%M:%S'
-                    ams_str = ams_dt.strftime(time)
-                    await message.reply(f"<b>🕐 Current time {city}: {ams_str}\n🗓 Date: {today}\n🗺 Timezone: {timezone}</b>", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
