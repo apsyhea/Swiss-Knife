@@ -32,10 +32,10 @@ async def cmd_start(message: Message):
 <b>Hello, I'm a Swiss Knife bot. 
 \nTo display the current weather 
 type: /weather [city] 
-For example <code>/weather Tokyo</code>
+For example: <code>/weather Tokyo</code>
 \nTo view the current time in different time zones
 type: /time [city]
-For example <code>/time Tokyo</code>
+For example: <code>/time Tokyo</code>
 \nTo convert the exchange rate 
 type: /currency [number][currency][currency]
 For example: <code>/currency 1 eur usd</code>
@@ -78,7 +78,7 @@ async def time(message: Message):
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
             if resp.status != 200:
-                await message.reply("Sorry, I couldn't find a temporary implementation for this city. Please try again.")
+                await message.reply("Sorry, I couldn't find a timezone for this city. Please try again.")
                 return
 
             weather = await resp.json()
