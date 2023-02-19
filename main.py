@@ -92,7 +92,7 @@ async def time(message: Message):
                     ams_dt = loc_dt.astimezone(city_dt)
                     time = '%H:%M:%S'
                     ams_str = ams_dt.strftime(time)
-                    await message.reply(f"<b>🕐 Current time in {city}: {ams_str}\n🗓 Date: {today}\n🗺 Timezone: {timezone}</b>", parse_mode="HTML") 
+                    await message.reply(f"<b>🕐 Current time {city}: {ams_str}\n🗓 Date: {today}\n🗺 Timezone: {timezone}</b>", parse_mode="HTML") 
 
 @dp.message_handler(Command("currency"))
 async def currency_convert(message: Message):
