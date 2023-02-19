@@ -2,7 +2,7 @@ import tokens
 import logging
 import aiohttp
 import requests
-import datetime
+from datetime import date, datetime
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram import Bot, Dispatcher, executor
 from aiogram.types import Message
