@@ -26,4 +26,4 @@ async def warmon(message: Message):
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'🐷 <b>loss of pigs:</b>\n<i>{stats_str}</i>', parse_mode="HTML")
+    await message.reply(f'🐷 <b>loss of pigs:</b>\n\n<i>{stats_str}</i>', parse_mode="HTML")
