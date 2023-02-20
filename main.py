@@ -1,4 +1,3 @@
-import pytz
 import tokens
 import logging
 import aiohttp
