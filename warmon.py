@@ -1,5 +1,6 @@
 import requests
 from aiogram.types import Message
+from dt import time, today
 
 async def warmon(message: Message):
 
@@ -26,4 +27,4 @@ async def warmon(message: Message):
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'🐷 <b>loss of pigs:</b>\n\n<i>{stats_str}</i>', parse_mode="HTML")
+    await message.reply(f'<b>🕐 {time}\n🗓 {today}\n🗺 TZ Europe/Kiyv GMT+2\n\n🐷 loss of pigs:</b>\n<i>{stats_str}</i>', parse_mode="HTML")

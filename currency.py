@@ -1,6 +1,7 @@
 import tokens
 import requests
 from aiogram.types import Message
+from dt import time, today
 
 C_TOKEN = tokens.cur_token
 
@@ -27,4 +28,4 @@ async def currency(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
+    await message.reply(f"<b>🕐 {time}\n🗓 {today}\n🗺 TZ Europe/Kiyv GMT+2\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}</b>", parse_mode="HTML")

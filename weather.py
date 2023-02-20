@@ -1,6 +1,7 @@
 import aiohttp
 import tokens
 from aiogram.types import Message
+from dt import time, today
 
 W_TOKEN = tokens.weather_token
 
@@ -21,4 +22,4 @@ async def weather(message: Message):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 
+            await message.reply(f"<b>🕐 {time}\n🗓 {today}\n🗺 TZ Europe/Kiyv GMT+2\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s</b>", parse_mode="HTML") 
