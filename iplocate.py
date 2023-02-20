@@ -2,7 +2,7 @@ import requests
 from aiogram.types import Message
 from dt import time, today
 
-async def ip(message: Message):
+async def iplocate(message: Message):
 
     ip_addres = message.get_args()
 
@@ -24,4 +24,4 @@ async def ip(message: Message):
     date_str += f"Isp Provider: {date['isp']}\n"
     date_str += f"Organization: {date['org']}"
 
-    await message.reply(f'<b>🕐 {time}\n🗓 {today}🗺 About ip address:\n\n<i>{date_str}</i></b>', parse_mode="HTML")
+    await message.reply(f'<b>🕐 {time}\n🗓 {today}\n\n🗺 About ip address:\n\n<i>{date_str}</i></b>', parse_mode="HTML")
