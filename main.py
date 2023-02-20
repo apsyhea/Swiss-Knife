@@ -1,3 +1,4 @@
+import pytz
 import tokens
 import logging
 import aiohttp
@@ -18,9 +19,7 @@ logging.basicConfig(level=logging.INFO)
 today = date.today()
 time = datetime.now().strftime("%H:%M:%S")
 
-bot = Bot(token=API_TOKEN)
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
+
 
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):

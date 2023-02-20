@@ -4,7 +4,9 @@ from aiogram.types import Message
 
 W_TOKEN = tokens.weather_token
 
-async def weather(message: Message, city: str):
+async def weather(message: Message):
+    city = message.get_args()
+
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
             if resp.status != 200:
@@ -19,4 +21,4 @@ async def weather(message: Message, city: str):
             description = weather["weather"][0]["description"]
             wind_speed = weather["wind"]["speed"]
 
-            await message.reply(f"Weather in {city}, {country}: \n\nTemperature: {temp}°C \nDescription: {description} \nWind Speed: {wind_speed} m/s")
+            await message.reply(f"🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s", parse_mode="HTML") 

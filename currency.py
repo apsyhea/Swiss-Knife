@@ -9,7 +9,6 @@ async def currency(message: Message):
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by spaces.")
         return
-
     amount, source_currency, target_currency = input_parts
 
     try:
@@ -28,4 +27,4 @@ async def currency(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"{amount} {source_currency.upper()} = {result} {target_currency.upper()}")
+    await message.reply(f"💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}", parse_mode="HTML")
