@@ -11,7 +11,10 @@ async def iplocate(message: Message):
     if response.status_code != 200:
         await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
         return
-    
+    elif response.json()['status'] == 'fail':
+        await message.reply(f"This address in {response.json()['message']}")
+        return
+
     date = response.json()
     date_str = f"Country Code: {date['countryCode']}\n"
     date_str += f"Country: {date['country']}\n"
