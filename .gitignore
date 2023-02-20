@@ -1,5 +1,8 @@
 __pycache__/
 venv/
+test_currency.py
+test_warmon.py
+test_weather.py
 tokens.py
 test.py
 git-token
