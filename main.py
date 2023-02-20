@@ -27,7 +27,7 @@ async def cmd_start(message: Message):
     dp.register_message_handler(weather, commands=['weather'])
     dp.register_message_handler(currency, commands=['currency'])
     dp.register_message_handler(warmon, commands=['warmon'])
-    dp.register_message_handler(geoip, commands=['ip'])
+    dp.register_message_handler(ip, commands=['ip'])
     await message.answer(messages.msg_start,parse_mode="HTML")
 
 @dp.message_handler(Command("weather"))
