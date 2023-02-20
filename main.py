@@ -22,7 +22,7 @@ time = datetime.now().strftime("%H:%M:%S")
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
-
+ 
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):
     dp.register_message_handler(weather, commands=['weather'])
