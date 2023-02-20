@@ -14,7 +14,8 @@ async def weather(message: Message):
                 await message.reply("Sorry, I couldn't find the weather for that city. Please try again.")
                 return
 
-            weather = resp.json()
+            weather = await resp.json()
+
             city = weather["name"]
             country = weather["sys"]["country"]
             temp = weather["main"]["temp"]
@@ -22,6 +23,7 @@ async def weather(message: Message):
             wind_speed = weather["wind"]["speed"]
 
             await message.reply(f"<b>🕐 {time}\n🗓 {today}\n🗺 TZ Europe/Kiyv GMT+2\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s</b>", parse_mode="HTML") 
+
 
 """
 data = resp.json()
