@@ -27,4 +27,4 @@ async def iplocate(message: Message):
     date_str += f"Isp Provider: {date['isp']}\n"
     date_str += f"Organization: {date['org']}"
 
-    await message.reply(f'<b>🕐 {time}\n🗓 {today}\n\n🗺 About ip address:\n\n<i>{date_str}</i></b>', parse_mode="HTML")
+    await message.reply(f'<b>🗓 {today}\n\n🗺 About ip address:\n{date_str}</b>', parse_mode="HTML")

@@ -9,27 +9,16 @@ async def weather(message: Message):
     city = message.get_args()
 
     async with aiohttp.ClientSession() as session:
-        async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as resp:
-            if resp.status != 200:
+        async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as   response:
+            if response.status != 200:
                 await message.reply("Sorry, I couldn't find the weather for that city. Please try again.")
                 return
+ 
+            data = await response.json()
+            stats_str =  f'<b>🌤️ Weather in {data["name"]}, </b>'
+            stats_str += f'<b>{data["sys"]["country"]}</b>\n'
+            stats_str += f'<b>🌡️ Temperature: {data["main"]["temp"]}°C</b>\n'
+            stats_str += f'<b>☁️ Description: {data["weather"][0]["description"].title()}</b>\n'
+            stats_str += f'<b>💨 Wind Speed: {data["wind"]["speed"]}m/s</b>'
 
-            weather = await resp.json()
-
-            city = weather["name"]
-            country = weather["sys"]["country"]
-            temp = weather["main"]["temp"]
-            description = weather["weather"][0]["description"]
-            wind_speed = weather["wind"]["speed"]
-
-            await message.reply(f"<b>🕐 {time}\n🗓 {today}\n🗺 TZ Europe/Kiyv GMT+2\n\n🌤️ Weather in {city}, {country}: \n🌡️ Temperature: {temp}°C \n☁️ Description: {description.title()} \n💨 Wind Speed: {wind_speed} m/s</b>", parse_mode="HTML") 
-
-
-"""
-data = resp.json()
-stats_str =  f'🌤️ Weather in {data["name"]}'
-stats_str += f'{data["sys"]["country"]}'
-stats_str += f'🌡️ Temperature: {data["main"]["temp"]}'
-stats_str += f'☁️ Description: {data["weather"][0]["description"]}'
-stats_str += f'💨 Wind Speed: {data["wind"]["speed"]}'
-"""
+            await message.reply(f"<b>🗓 {today}</b>\n\n{stats_str}", parse_mode="HTML") 
