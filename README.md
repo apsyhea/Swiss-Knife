@@ -22,13 +22,21 @@ For example: /iplocate 8.8.8.8
 ---
 Output:
 🇺🇸 Country: United States
+
 🗺 Region: VA
+
 🌆 City: Ashburn
+
 ✉️ Zip Code: 20149
+
 🕐 Timezone: America/New_York
+
 📍 Latitude: 39.03
+
 📍 Longitude: -77.5
+
 🌐 Isp Provider: Google LLC
+
 🏢 Organization: Google Public DNS
 
 ### To convert the exchange rate 
@@ -47,18 +55,32 @@ Output:
 🗓 21-02-2023
 
 🐷 Total combat losses of the russian pigs:
+
 • Personnel Units: 144440
+
 • Tanks: 3326
+
 • Armoured Fighting Vehicles: 6562
+
 • Artillery Systems: 2338
+
 • MLRS: 471
+
 • AA Warfare Systems: 243
+
 • Planes: 299
+
 • Helicopters: 287
+
 • Vehicles Fuel Tanks: 5210
+
 • Warships Cutters: 18
+
 • Cruise Missiles: 873
+
 • UAV Systems: 2023
+
 • Special Military Equip: 226
+
 • ATGM/SRBM Systems: 4
 
