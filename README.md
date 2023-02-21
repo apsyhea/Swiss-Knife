@@ -9,10 +9,15 @@ type: /weather [city]
 For example `/weather Tokyo`
 ---
 Output:
+
 🇯🇵 Country: JP
+
 🌤️ Weather in Tokyo, 
+
 🌡️ Temperature: 2.24°C
+
 ☁️ Description: Few Clouds
+
 💨 Wind Speed: 10.29 m/s
 
 ### Find out the geo and provider ip address:
