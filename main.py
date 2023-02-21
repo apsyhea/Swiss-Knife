@@ -12,7 +12,7 @@ from aiogram.dispatcher.filters import Text, Command
 
 API_TOKEN = tokens.bot_token
 W_TOKEN = tokens.weather_token
-C_TOKEN = tokens.cur_token
+C_TOKEN = tokens.cur_token 
 
 logging.basicConfig(level=logging.INFO)
 
