@@ -28,4 +28,4 @@ async def currency(message: Message):
 
     rate = data["conversion_rates"][target_currency.upper()]
     result = amount * rate
-    await message.reply(f"<b>🗓 {today}\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}</b>", parse_mode="HTML")
+    await message.reply(f"<b>🗓 {today}\n\n💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}\n\n💻 Dev: @apsyhea</b>", parse_mode="HTML")
