@@ -5,7 +5,8 @@ Here is a short description of what the bot can do now.
 
 ### To display the current weather 
 ---
-type: /weather [city] 
+type: /weather [city]
+
 For example `/weather Tokyo`
 ---
 Output:
@@ -23,7 +24,8 @@ Output:
 ### Find out the geo and provider ip address:
 ---
 type: /iplocate [ip address]
-For example: /iplocate 8.8.8.8
+
+For example: `/iplocate 8.8.8.8`
 ---
 Output:
 
@@ -48,6 +50,7 @@ Output:
 ### To convert the exchange rate 
 ---
 type: /currency [number][currency][currency]
+
 For example: `/currency 1 eur usd`
 ---
 Output:
