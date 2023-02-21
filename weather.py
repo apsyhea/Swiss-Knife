@@ -16,11 +16,11 @@ async def weather(message: Message):
                 return
  
             data = await response.json()
-            stats_str = f'<b>{flag.flag(data["sys"]["country"])}</b>'
-            stats_str += f'<b> Country: {data["sys"]["country"]}</b>\n'
-            stats_str += f'<b>🌤️ Weather in {data["name"]}, </b>\n'
-            stats_str += f'<b>🌡️ Temperature: {data["main"]["temp"]}°C</b>\n'
-            stats_str += f'<b>☁️ Description: {data["weather"][0]["description"].title()}</b>\n'
-            stats_str += f'<b>💨 Wind Speed: {data["wind"]["speed"]} m/s</b>'
+            stats_str = f'{flag.flag(data["sys"]["country"])}'
+            stats_str += f' Country: {data["sys"]["country"]}\n'
+            stats_str += f'🌤️ Weather in {data["name"]}, \n'
+            stats_str += f'🌡️ Temperature: {data["main"]["temp"]}°C\n'
+            stats_str += f'☁️ Description: {data["weather"][0]["description"].title()}\n'
+            stats_str += f'💨 Wind Speed: {data["wind"]["speed"]} m/s'
 
-            await message.reply(stats_str, parse_mode="HTML") 
+            await message.reply(f'<b>{stats_str}</b>', parse_mode="HTML") 
