@@ -1,7 +1,7 @@
 # Swiss-Knife-Bot
 ## The Swiss Army Knife is a versatile tool for every need. 
-Right now there are not many functions, but over time the functionality will expand. 
-Here is a short description of what the bot can do now.
+## Right now there are not many functions, but over time the functionality will expand. 
+## Here is a short description of what the bot can do now.
 
 ### To display the current weather 
 ---
