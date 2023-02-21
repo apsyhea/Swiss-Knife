@@ -21,6 +21,7 @@ type: /iplocate [ip address]
 For example: /iplocate 8.8.8.8
 ---
 Output:
+
 🇺🇸 Country: United States
 
 🗺 Region: VA
