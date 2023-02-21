@@ -1,81 +1,64 @@
 # Swiss-Knife-Bot
 The Swiss Army Knife is a versatile tool for every need. 
-
 Right now there are not many functions, but over time the functionality will expand. 
-
 Here is a short description of what the bot can do now.
 
 ### To display the current weather 
-
 ---
-
 type: /weather [city] 
-
 For example `/weather Tokyo`
-
 ---
-
 Output:
+🇯🇵 Country: JP
+🌤️ Weather in Tokyo, 
+🌡️ Temperature: 2.24°C
+☁️ Description: Few Clouds
+💨 Wind Speed: 10.29 m/s
 
-🗓 As of 2023-02-17
-
-🌤️ Weather in Tokyo, JP: 
-
-🌡️ Temperature: 3.68°C 
-
-☁️ Description: clear sky 
-
-💨 Wind Speed: 1.54 m/s
+### Find out the geo and provider ip address:
+---
+type: /iplocate [ip address]
+For example: /iplocate 8.8.8.8
+---
+Output:
+🇺🇸 Country: United States
+🗺 Region: VA
+🌆 City: Ashburn
+✉️ Zip Code: 20149
+🕐 Timezone: America/New_York
+📍 Latitude: 39.03
+📍 Longitude: -77.5
+🌐 Isp Provider: Google LLC
+🏢 Organization: Google Public DNS
 
 ### To convert the exchange rate 
-
 ---
-
 type: /currency [number][currency][currency]
-
 For example: `/currency 1 eur usd`
-
 ---
-
 Output:
+🗓 21-02-2023
 
-🗓 As of 2023-02-17
-
-💵 1.0 EUR is 1.0678 💳 USD
+💵 1.0 EUR is 1.0683 💳 USD
 
 ### Use `/warmon` to display rashist casualty statistics for the day
 
 Output:
+🗓 21-02-2023
 
-🗓 As of 2023-02-19
-
-🐷 loss of pigs:
-
-• Personnel Units: 142270
-
-• Tanks: 3303
-
-• Armoured Fighting Vehicles: 6533
-
-• Artillery Systems: 2326
-
-• MLRS: 469
-
+🐷 Total combat losses of the russian pigs:
+• Personnel Units: 144440
+• Tanks: 3326
+• Armoured Fighting Vehicles: 6562
+• Artillery Systems: 2338
+• MLRS: 471
 • AA Warfare Systems: 243
-
-• Planes: 298
-
+• Planes: 299
 • Helicopters: 287
-
-• Vehicles Fuel Tanks: 5196
-
+• Vehicles Fuel Tanks: 5210
 • Warships Cutters: 18
-
-• Cruise Missiles: 871
-
-• UAV Systems: 2016
-
-• Special Military Equip: 223
-
+• Cruise Missiles: 873
+• UAV Systems: 2023
+• Special Military Equip: 226
 • ATGM/SRBM Systems: 4
 
