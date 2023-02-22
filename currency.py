@@ -23,6 +23,7 @@ async def currency(message: Message):
     if response.status_code != 200:
         await message.reply("Sorry, something went wrong with the currency conversion.")
         return
+
     data = response.json()
 
     rate = data["conversion_rates"][target_currency.upper()]
