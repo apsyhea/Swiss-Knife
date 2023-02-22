@@ -1,5 +1,12 @@
 import requests
+import datetime
+import flag
 from aiogram.types import Message
+
+tz_offset = datetime.timedelta(seconds=7200)
+utc_time = datetime.datetime.utcnow()
+print(utc_time)
+local_time = utc_time + tz_offset
 
 async def warmon(message: Message):
 
@@ -26,4 +33,4 @@ async def warmon(message: Message):
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
 
-    await message.reply(f'<b>🐷 Total combat losses of the russian pigs:\n<i>{stats_str}</i>\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
+    await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n========RASHISTS=LOSSES========\n{stats_str}================================\n🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
