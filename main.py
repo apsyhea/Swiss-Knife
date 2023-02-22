@@ -62,10 +62,10 @@ async def cmd_iplocate(message: Message) -> str:
 async def handle_all_messages(message: Message):
     await message.answer("Sorry, I don't understand. Try /help")
 
-dp.register_message_handler(cmd_weather, ChatTypeFilter(ChatType.PRIVATE))
-dp.register_message_handler(cmd_currency, ChatTypeFilter(ChatType.PRIVATE))
-dp.register_message_handler(cmd_warmon, ChatTypeFilter(ChatType.PRIVATE))
-dp.register_message_handler(cmd_iplocate, ChatTypeFilter(ChatType.PRIVATE))
+dp.register_message_handler(cmd_weather)
+dp.register_message_handler(cmd_currency)
+dp.register_message_handler(cmd_warmon)
+dp.register_message_handler(cmd_iplocate)
 dp.register_message_handler(handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
 if __name__ == '__main__':
