@@ -24,6 +24,6 @@ async def weather(message: Message):
             stats_str += f'🌤️ Weather in {data["name"]}, \n'
             stats_str += f'🌡️ Temperature: {data["main"]["temp"]}°C\n'
             stats_str += f'☁️ Description: {data["weather"][0]["description"].title()}\n'
-            stats_str += f'💨 Wind Speed: {data["wind"]["speed"]} m/s'
+            stats_str += f'💨 Wind Speed: {data["wind"]["speed"]} m/s'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
             await message.reply(f'<b>{stats_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML") 

@@ -25,6 +25,7 @@ async def iplocate(message: Message):
     date_str += f"📍 Latitude: {date['lat']}\n"
     date_str += f"📍 Longitude: {date['lon']}\n"
     date_str += f"🌐 Isp Provider: {date['isp']}\n"
-    date_str += f"🏢 Organization: {date['org']}"
+    date_str += f"🏢 Organization: {date['org']}\n"
+    date_str += f"🖥 IP Address {date['query']}"
 
     await message.reply(f'<b>{date_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
