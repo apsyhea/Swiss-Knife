@@ -4,10 +4,9 @@
 ## Here is a short description of what the bot can do now.
 
 ### To display the current weather 
+## For example `/weather Tokyo`
 ---
 type: /weather [city]
-
-For example `/weather Tokyo`
 ---
 Output:
 
@@ -22,10 +21,9 @@ Output:
 💨 Wind Speed: 10.29 m/s
 
 ### Find out the geo and provider ip address:
+## For example: `/iplocate 8.8.8.8`
 ---
 type: /iplocate [ip address]
-
-For example: `/iplocate 8.8.8.8`
 ---
 Output:
 
@@ -48,10 +46,9 @@ Output:
 🏢 Organization: Google Public DNS
 
 ### To convert the exchange rate 
+## For example: `/currency 1 eur usd`
 ---
 type: /currency [number][currency][currency]
-
-For example: `/currency 1 eur usd`
 ---
 Output:
 🗓 21-02-2023
