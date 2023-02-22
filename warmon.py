@@ -1,6 +1,5 @@
 import requests
 from aiogram.types import Message
-from dt import time, today
 
 async def warmon(message: Message):
 

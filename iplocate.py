@@ -1,7 +1,6 @@
 import requests
 import flag
 from aiogram.types import Message
-from dt import time, today
 
 async def iplocate(message: Message):
 

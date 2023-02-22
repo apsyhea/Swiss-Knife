@@ -1,5 +1,6 @@
 __pycache__/
 venv/
+timedate.py
 test_currency.py
 test_warmon.py
 test_weather.py

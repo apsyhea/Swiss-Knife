@@ -1,7 +1,6 @@
 import tokens
 import requests
 from aiogram.types import Message
-from dt import time, today
 
 C_TOKEN = tokens.cur_token
 

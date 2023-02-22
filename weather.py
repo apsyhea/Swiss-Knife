@@ -1,8 +1,9 @@
 import aiohttp
 import tokens
 import flag
+import datetime
 from aiogram.types import Message
-from dt import time, today
+
 
 W_TOKEN = tokens.weather_token
 
@@ -16,8 +17,10 @@ async def weather(message: Message):
                 return
  
             data = await response.json()
-            stats_str = f'{flag.flag(data["sys"]["country"])}'
-            stats_str += f' Country: {data["sys"]["country"]}\n'
+            tz_offset = datetime.timedelta(seconds=data["timezone"])
+            utc_time = datetime.datetime.utcnow()
+            local_time = utc_time + tz_offset
+            stats_str = f'{flag.flag(data["sys"]["country"])} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n'
             stats_str += f'🌤️ Weather in {data["name"]}, \n'
             stats_str += f'🌡️ Temperature: {data["main"]["temp"]}°C\n'
             stats_str += f'☁️ Description: {data["weather"][0]["description"].title()}\n'
