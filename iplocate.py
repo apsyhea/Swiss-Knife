@@ -14,7 +14,10 @@ async def iplocate(message: Message):
     elif response.json()['status'] == 'fail':
         await message.reply(f"This address in {response.json()['message']}")
         return
-
+    elif ip_addres == '':
+        await message.reply('You did not input an IP address or domain')
+        return
+    
     date = response.json()
     date_str = f"{flag.flag(date['countryCode'])}"
     date_str += f" Country: {date['country']}\n"
