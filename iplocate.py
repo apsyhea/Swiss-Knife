@@ -15,7 +15,7 @@ async def iplocate(message: Message):
         await message.reply(f"This address in {response.json()['message']}")
         return
     elif ip_addres == '':
-        await message.reply('You did not input an IP address or domain')
+        await message.reply('You did not input an IP address or domain. Try <code>/iplocate 8.8.8.8</code>', parse_mode="HTML")
         return
     
     date = response.json()

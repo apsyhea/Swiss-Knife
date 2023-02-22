@@ -5,7 +5,8 @@ from aiogram.types import Message
 C_TOKEN = tokens.cur_token
 
 async def currency(message: Message):
-    input_parts = message.get_args().split()[0:]
+    input_parts = message.get_args()
+    print(input_parts)
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by spaces.")
         return
@@ -23,7 +24,6 @@ async def currency(message: Message):
     if response.status_code != 200:
         await message.reply("Sorry, something went wrong with the currency conversion.")
         return
-
     data = response.json()
 
     rate = data["conversion_rates"][target_currency.upper()]
