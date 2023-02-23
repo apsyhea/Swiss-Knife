@@ -28,7 +28,7 @@ async def cmd_start(message: Message):
 @dp.message_handler(Command("help"))
 async def cmd_help(message: Message):
 
-    await message.answer(messages.msg_start,parse_mode="HTML")
+    await message.reply(messages.msg_start,parse_mode="HTML")
 
 @dp.message_handler(Command("weather"))
 async def cmd_weather(message: Message):
