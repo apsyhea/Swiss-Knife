@@ -5,7 +5,8 @@ from aiogram.types import Message
 C_TOKEN = tokens.cur_token
 
 async def currency(message: Message):
-    input_parts = message.get_args()
+    input_parts = message.get_args().split()[0:]
+
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by space or try /help")
         return
