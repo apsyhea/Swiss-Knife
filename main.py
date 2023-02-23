@@ -22,28 +22,44 @@ dp = Dispatcher(bot, storage=storage)
 
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 async def cmd_start(message: Message):
-    dp.register_message_handler(weather, commands=['weather'])
-    dp.register_message_handler(currency, commands=['currency'])
-    dp.register_message_handler(warmon, commands=['warmon'])
-    dp.register_message_handler(iplocate, commands=['iplocate'])
+    
+    await message.answer(messages.msg_start,parse_mode="HTML")
+
+@dp.message_handler(Text(equals=["/help"], ignore_case=True))
+async def cmd_help(message: Message):
+
     await message.answer(messages.msg_start,parse_mode="HTML")
 
 @dp.message_handler(Command("weather"))
 async def cmd_weather(message: Message):
+
     await weather(message)
 
 @dp.message_handler(Command("currency"))
 async def cmd_currency(message: Message):
+
     await currency(message)
 
 @dp.message_handler(Command("warmon"))
 async def cmd_warmon(message: Message):
+
     await warmon(message)
 
 @dp.message_handler(Command("iplocate"))
 async def cmd_iplocate(message: Message):
+
     await iplocate(message)
 
+@dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
+async def handle_all_messages(message: Message):
+
+    await message.answer("Sorry, I don't understand. Try /help")
+
+dp.register_message_handler(weather, commands=['weather'])
+dp.register_message_handler(currency, commands=['currency'])
+dp.register_message_handler(warmon, commands=['warmon'])
+dp.register_message_handler(iplocate, commands=['iplocate'])
+dp.register_message_handler(handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

@@ -1,34 +1,34 @@
-import requests
+import aiohttp
 import flag
 from aiogram.types import Message
 
 async def iplocate(message: Message):
-
-    ip_addres = message.get_args()
-
-    url = f'http://ip-api.com/json/{ip_addres}'
-    response = requests.get(url)
-    if response.status_code != 200:
-        await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
+    ip_address = message.get_args()
+    if not ip_address:
+        await message.reply('Please enter an IP address or domain. Try /help', parse_mode='HTML')
         return
-    elif response.json()['status'] == 'fail':
-        await message.reply(f"This address in {response.json()['message']}")
-        return
-    elif ip_addres == '':
-        await message.reply('You did not input an IP address or domain. Try <code>/iplocate 8.8.8.8</code>', parse_mode="HTML")
-        return
-    
-    date = response.json()
-    date_str = f"{flag.flag(date['countryCode'])}"
-    date_str += f" Country: {date['country']}\n"
-    date_str += f"🗺 Region: {date['region']}\n"
-    date_str += f"🌆 City: {date['city']}\n"
-    date_str += f"✉️ Zip Code: {date['zip']}\n"
-    date_str += f"🕐 Timezone: {date['timezone']}\n"
-    date_str += f"📍 Latitude: {date['lat']}\n"
-    date_str += f"📍 Longitude: {date['lon']}\n"
-    date_str += f"🌐 Isp Provider: {date['isp']}\n"
-    date_str += f"🏢 Organization: {date['org']}\n"
-    date_str += f"🖥 IP Address {date['query']}"
 
-    await message.reply(f'<b>{date_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
+    async with aiohttp.ClientSession() as session:
+        url = f'http://ip-api.com/json/{ip_address}'
+        async with session.get(url) as response:
+            if response.status != 200:
+                await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
+                return
+            json_response = await response.json()
+            if json_response['status'] == 'fail':
+                await message.reply(f"This address in {json_response['message']}")
+                return
+
+            date_str = f"{flag.flag(json_response['countryCode'])}"
+            date_str += f" Country: {json_response['country']}\n"
+            date_str += f"🗺 Region: {json_response['region']}\n"
+            date_str += f"🌆 City: {json_response['city']}\n"
+            date_str += f"✉️ Zip Code: {json_response['zip']}\n"
+            date_str += f"🕐 Timezone: {json_response['timezone']}\n"
+            date_str += f"📍 Latitude: {json_response['lat']}\n"
+            date_str += f"📍 Longitude: {json_response['lon']}\n"
+            date_str += f"🌐 Isp Provider: {json_response['isp']}\n"
+            date_str += f"🏢 Organization: {json_response['org']}\n"
+            date_str += f"🖥 IP Address {json_response['query']}"
+
+            await message.reply(f'<b>{date_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML")

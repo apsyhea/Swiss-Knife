@@ -13,7 +13,7 @@ async def weather(message: Message):
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as   response:
             if response.status != 200:
-                await message.reply("Sorry, I couldn't find the weather for that city. Please try again.")
+                await message.reply("Sorry, I couldn't find the weather for that city. Please try /help.")
                 return
  
             data = await response.json()
