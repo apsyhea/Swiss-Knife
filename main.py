@@ -25,7 +25,7 @@ async def cmd_start(message: Message):
     
     await message.answer(messages.msg_start,parse_mode="HTML")
 
-@dp.message_handler(Text(equals=["/help"], ignore_case=True))
+@dp.message_handler(Command("help"))
 async def cmd_help(message: Message):
 
     await message.answer(messages.msg_start,parse_mode="HTML")
@@ -55,6 +55,7 @@ async def handle_all_messages(message: Message):
 
     await message.answer("Sorry, I don't understand. Try /help")
 
+dp.register_message_handler(cmd_help, commands=['help'])
 dp.register_message_handler(weather, commands=['weather'])
 dp.register_message_handler(currency, commands=['currency'])
 dp.register_message_handler(warmon, commands=['warmon'])
