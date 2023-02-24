@@ -11,7 +11,7 @@ build:
     - docker build -t myapp .
   artifacts:
     paths:
-      - myapp.tar
+      - /app/myapp.tar
 
 test:
   stage: test
