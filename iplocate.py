@@ -2,6 +2,7 @@ import aiohttp
 import flag
 from aiogram.types import Message
 
+
 async def iplocate(message: Message):
     ip_address = message.get_args()
     if not ip_address:

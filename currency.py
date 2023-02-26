@@ -4,6 +4,7 @@ from aiogram.types import Message
 
 C_TOKEN = tokens.cur_token
 
+
 async def currency(message: Message):
     input_parts = message.get_args().split()[0:]
 
