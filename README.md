@@ -9,6 +9,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 /currency [number][currency][currency] to get currency exchange rates for two currencies.
 /warmon to get daily casualty statistics for the war in Russia.
 ### Examples
+
 /iplocate 8.8.8.8 returns:
 
 🇯🇵 Country: JP
@@ -20,6 +21,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 ☁️ Description: Few Clouds
 
 💨 Wind Speed: 10.29 m/s
+
 
 /iplocate 8.8.8.8 returns:
 🇺🇸 Country: United States
@@ -40,10 +42,12 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 
 🏢 Organization: Google Public DNS
 
+
 /currency 1.0 EUR USD returns:
 🗓 21-02-2023
 
 💵 1.0 EUR is 1.0683 💳 USD
+
 
 /warmon returns:
 🗓 21-02-2023
@@ -77,6 +81,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 • Special Military Equip: 226
 
 • ATGM/SRBM Systems: 4
+
 
 ### Contributing
 If you find any bugs or have suggestions for new features, feel free to open an issue or submit a pull request on GitHub.
