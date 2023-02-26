@@ -1,16 +1,16 @@
 # Swiss Knife Telegram Bot
 Swiss Knife is a versatile Telegram bot that provides useful information such as weather, IP location, currency exchange rates, and daily casualty statistics for the war in Russia.
 
-###  Usage
+##  Usage
 To use Swiss Knife, simply send one of the following commands to the bot:
 
 /weather [city] to get weather information for a specific city.
 /iplocate [ip address] to get information about the location and ISP provider of an IP address.
 /currency [number][currency][currency] to get currency exchange rates for two currencies.
 /warmon to get daily casualty statistics for the war in Russia.
-### Examples
+## Examples
 
-/iplocate 8.8.8.8 returns:
+### /iplocate 8.8.8.8 returns:
 
 🇯🇵 Country: JP
 
@@ -23,7 +23,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 💨 Wind Speed: 10.29 m/s
 
 
-/iplocate 8.8.8.8 returns:
+### /iplocate 8.8.8.8 returns:
 🇺🇸 Country: United States
 
 🗺 Region: VA
@@ -43,13 +43,13 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 🏢 Organization: Google Public DNS
 
 
-/currency 1.0 EUR USD returns:
+### /currency 1.0 EUR USD returns:
 🗓 21-02-2023
 
 💵 1.0 EUR is 1.0683 💳 USD
 
 
-/warmon returns:
+### /warmon returns:
 🗓 21-02-2023
 
 🐷 Total combat losses of the russian pigs:
