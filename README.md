@@ -10,7 +10,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 /warmon to get daily casualty statistics for the war in Russia.
 ## Examples
 
-### /iplocate 8.8.8.8 returns:
+### /weather Tokyo returns:
 
 🇯🇵 Country: JP
 
