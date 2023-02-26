@@ -1,14 +1,15 @@
-# Swiss-Knife-Bot
-## The Swiss Army Knife is a versatile tool for every need. 
-## Right now there are not many functions, but over time the functionality will expand. 
-## Here is a short description of what the bot can do now.
+# Swiss Knife Telegram Bot
+Swiss Knife is a versatile Telegram bot that provides useful information such as weather, IP location, currency exchange rates, and daily casualty statistics for the war in Russia.
 
-### To display the current weather 
-## For example `/weather Tokyo`
----
-type: /weather [city]
----
-Output:
+###  Usage
+To use Swiss Knife, simply send one of the following commands to the bot:
+
+/weather [city] to get weather information for a specific city.
+/iplocate [ip address] to get information about the location and ISP provider of an IP address.
+/currency [number][currency][currency] to get currency exchange rates for two currencies.
+/warmon to get daily casualty statistics for the war in Russia.
+### Examples
+/iplocate 8.8.8.8 returns:
 
 🇯🇵 Country: JP
 
@@ -20,13 +21,7 @@ Output:
 
 💨 Wind Speed: 10.29 m/s
 
-### Find out the geo and provider ip address:
-## For example: `/iplocate 8.8.8.8`
----
-type: /iplocate [ip address]
----
-Output:
-
+/iplocate 8.8.8.8 returns:
 🇺🇸 Country: United States
 
 🗺 Region: VA
@@ -45,19 +40,12 @@ Output:
 
 🏢 Organization: Google Public DNS
 
-### To convert the exchange rate 
-## For example: `/currency 1 eur usd`
----
-type: /currency [number][currency][currency]
----
-Output:
+/currency 1.0 EUR USD returns:
 🗓 21-02-2023
 
 💵 1.0 EUR is 1.0683 💳 USD
 
-### Use `/warmon` to display rashist casualty statistics for the day
-
-Output:
+/warmon returns:
 🗓 21-02-2023
 
 🐷 Total combat losses of the russian pigs:
@@ -90,3 +78,8 @@ Output:
 
 • ATGM/SRBM Systems: 4
 
+### Contributing
+If you find any bugs or have suggestions for new features, feel free to open an issue or submit a pull request on GitHub.
+
+### Disclaimer
+Swiss Knife is not affiliated with any government or military organization. The casualty statistics provided by the bot are for informational purposes only and should not be taken as a comprehensive or accurate representation of the situation in Russia.
