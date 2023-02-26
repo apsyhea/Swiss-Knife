@@ -25,7 +25,8 @@ dp = Dispatcher(bot, storage=storage)
 
 
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
-async def cmd_start(message: Message):  # Handler for "/start" command
+# Handler for "/start" command
+async def cmd_start(message: Message):
     """
     Sends a welcome message when the user sends "/start" command
     """
@@ -33,7 +34,8 @@ async def cmd_start(message: Message):  # Handler for "/start" command
 
 
 @dp.message_handler(Command("help"))
-async def cmd_help(message: Message):  # Handler for "/help" command
+# Handler for "/help" command
+async def cmd_help(message: Message):
     """
     Sends a help message when the user sends "/help" command
     """
@@ -41,7 +43,8 @@ async def cmd_help(message: Message):  # Handler for "/help" command
 
 
 @dp.message_handler(Command("weather"))
-async def cmd_weather(message: Message):  # Handler for "/weather" command
+# Handler for "/weather" command
+async def cmd_weather(message: Message):
     """
     Calls the weather function to provide weather information
     """
@@ -49,7 +52,8 @@ async def cmd_weather(message: Message):  # Handler for "/weather" command
 
 
 @dp.message_handler(Command("currency"))
-async def cmd_currency(message: Message):  # Handler for "/currency" command
+# Handler for "/currency" command
+async def cmd_currency(message: Message):
     """
     Calls the currency function to provide currency conversion information
     """
@@ -57,7 +61,8 @@ async def cmd_currency(message: Message):  # Handler for "/currency" command
 
 
 @dp.message_handler(Command("warmon"))
-async def cmd_warmon(message: Message):  # Handler for "/warmon" command
+# Handler for "/warmon" command
+async def cmd_warmon(message: Message):
     """
     Calls the warmon function to provide weather monitoring information
     """
@@ -65,7 +70,8 @@ async def cmd_warmon(message: Message):  # Handler for "/warmon" command
 
 
 @dp.message_handler(Command("iplocate"))
-async def cmd_iplocate(message: Message):  # Handler for "/iplocate" command
+# Handler for "/iplocate" command
+async def cmd_iplocate(message: Message):
     """
     Calls the iplocate function to provide IP location information
     """
@@ -73,7 +79,8 @@ async def cmd_iplocate(message: Message):  # Handler for "/iplocate" command
 
 
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
-async def handle_all_messages(message: Message):  # Handler for all other messages in private chat
+# Handler for all other messages in private chat
+async def handle_all_messages(message: Message):
     """
     Responds with a default message for other messages in private chat
     """
