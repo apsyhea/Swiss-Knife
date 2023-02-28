@@ -12,6 +12,7 @@ from warmon import warmon
 from weather import weather
 from currency import currency
 from iplocate import iplocate
+from alarm import alarm
 
 API_TOKEN = bot_token
 W_TOKEN = weather_token
@@ -78,6 +79,15 @@ async def cmd_iplocate(message: Message):
     await iplocate(message)
 
 
+@dp.message_handler(Command("alarm"))
+# Handler for "/alarm" command
+async def cmd_alarm(message: Message):
+    """
+    Calls the alarm function...
+    """
+    await alarm(message)
+
+
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
 # Handler for all other messages in private chat
 async def handle_all_messages(message: Message):
@@ -91,6 +101,7 @@ dp.register_message_handler(weather, commands=['weather'])
 dp.register_message_handler(currency, commands=['currency'])
 dp.register_message_handler(warmon, commands=['warmon'])
 dp.register_message_handler(iplocate, commands=['iplocate'])
+dp.register_message_handler(iplocate, commands=['alarm'])
 dp.register_message_handler(
     handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
