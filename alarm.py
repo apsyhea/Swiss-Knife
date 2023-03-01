@@ -1,4 +1,5 @@
-# import datetime
+import datetime
+import flag
 import json
 import aiohttp
 from tokens import alarm_token
@@ -18,6 +19,11 @@ async def alarm(message: Message):
                 await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
                 return
             data = await response.text()
+            tz_offset = datetime.timedelta(seconds=7200)
+            utc_time = datetime.datetime.utcnow()
+            local_time = utc_time + tz_offset
+            time = f'{local_time:%Y-%m-%d} | {local_time:%H:%M:%S}'
+            country_flag = flag.flag('UA')
             state = json.loads(data)
             for alarm_state in state['states']:
                 if alarm_state['alert']:
@@ -25,4 +31,4 @@ async def alarm(message: Message):
                     alarm_state['changed'] = alarm_state.get('changed', '')  # add 'changed' field if not present
             if alert_names:
                 alarm_info = "\n🚨 ".join(alert_names)
-                await message.reply(f"<b>⚠️ Air alarm:\n🚨 {alarm_info} </b>", parse_mode='HTML')
+                await message.reply(f"<b>{country_flag} {time}\n⚠️ Air alarm:\n🚨 {alarm_info}\n\n💻 Dev: @apsyhea</b>", parse_mode='HTML')
