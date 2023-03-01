@@ -11,6 +11,7 @@ A_TOKEN = alarm_token
 async def alarm(message: Message):
     url = 'https://alerts.com.ua/api/states'
     headers = {'X-API-Key': f'{A_TOKEN}'}
+    alert_names = []
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers=headers) as response:
@@ -21,4 +22,6 @@ async def alarm(message: Message):
             state = json.loads(data)
             for alarm_state in state['states']:
                 if alarm_state['alert']:
-                    await message.reply(f"{alarm_state['name']} повітряна тривога")
+                    alert_names.append(alarm_state['name'])
+            if alert_names:
+                await message.reply("<b>⚠️ Повітрянна тривога:\n🚨 </b>"+"\n🚨 ".join(alert_names), parse_mode='HTML')

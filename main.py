@@ -101,7 +101,7 @@ dp.register_message_handler(weather, commands=['weather'])
 dp.register_message_handler(currency, commands=['currency'])
 dp.register_message_handler(warmon, commands=['warmon'])
 dp.register_message_handler(iplocate, commands=['iplocate'])
-dp.register_message_handler(iplocate, commands=['alarm'])
+dp.register_message_handler(alarm, commands=['alarm'])
 dp.register_message_handler(
     handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
