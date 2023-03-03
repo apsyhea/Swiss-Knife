@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import datetime
+import flag
+>>>>>>> 707b8ce795a24fd5d382586a22ccb8f1f4a5d558
 import json
 import flag
 import aiohttp
@@ -26,12 +31,18 @@ async def alarm(message: Message):
                 await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
                 return
             data = await response.text()
+            tz_offset = datetime.timedelta(seconds=7200)
+            utc_time = datetime.datetime.utcnow()
+            local_time = utc_time + tz_offset
+            time = f'{local_time:%Y-%m-%d} | {local_time:%H:%M:%S}'
+            country_flag = flag.flag('UA')
             state = json.loads(data)
             for alarm_state in state['states']:
                 if alarm_state['alert']:
                     alert_names.append(alarm_state['name_en'])
                     alarm_state['changed'] = alarm_state.get('changed', '')
             if alert_names:
+<<<<<<< HEAD
                 await send_notification(message, alert_names)
 
 async def alarm_scheduler(message: Message):
@@ -43,3 +54,7 @@ async def alarm_scheduler(message: Message):
 if __name__ == '__main__':
     asyncio.create_task(alarm_scheduler(message))
     executor.start_polling(dp, skip_updates=True)
+=======
+                alarm_info = "\n🚨 ".join(alert_names)
+                await message.reply(f"<b>{country_flag} {time}\n⚠️ Air alarm:\n🚨 {alarm_info}\n\n💻 Dev: @apsyhea</b>", parse_mode='HTML')
+>>>>>>> 707b8ce795a24fd5d382586a22ccb8f1f4a5d558

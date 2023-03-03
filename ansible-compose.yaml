@@ -1,0 +1,28 @@
+---
+- name: Update and restart Docker containers on Oracle host
+  hosts: oracle
+  tasks:
+    - name: Update code from GitHub
+      command: git pull
+      args:
+        chdir: /home/apsyhea/Swiss-Knife
+
+    - name: Stop containers
+      docker_compose:
+        project_src: /home/apsyhea/Swiss-Knife/docker-compose.yml
+        state: stopped
+
+    - name: Build and start containers
+      docker_compose:
+        project_src: /home/apsyhea/Swiss-Knife/docker-compose.yml
+        state: started
+
+    - name: Check running containers
+      docker_compose:
+        project_src: /home/apsyhea/Swiss-Knife/docker-compose.yml
+        command: ps
+      register: ps_result
+
+    - name: Print container status
+      debug:
+        var: ps_result
