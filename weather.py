@@ -19,6 +19,7 @@ async def weather(message: Message):
 
             data = await response.json()
             tz_offset = datetime.timedelta(seconds=data["timezone"])
+            print(data["timezone"])
             utc_time = datetime.datetime.utcnow()
             local_time = utc_time + tz_offset
             stats_str = f'{flag.flag(data["sys"]["country"])} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n'
