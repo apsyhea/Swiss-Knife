@@ -8,12 +8,14 @@ from aiogram.types import Message
 
 A_TOKEN = alarm_token
 
+
 async def send_notification(message: Message, alert_names: list):
     tz_offset = datetime.timedelta(seconds=7200)
     utc_time = datetime.datetime.utcnow()
     local_time = utc_time + tz_offset
     alarm_info = "\n🚨 ".join(alert_names)
     await message.reply(f"<b>{flag.flag('UA')} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n⚠️ Air alarm:\n🚨 {alarm_info}</b>", parse_mode='HTML')
+
 
 async def alarm(message: Message):
     url = 'https://alerts.com.ua/api/states'
@@ -33,6 +35,7 @@ async def alarm(message: Message):
                     alarm_state['changed'] = alarm_state.get('changed', '')
             if alert_names:
                 await send_notification(message, alert_names)
+
 
 async def alarm_scheduler(message: Message):
     while True:
