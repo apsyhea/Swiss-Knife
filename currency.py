@@ -2,15 +2,18 @@ import tokens
 import aiohttp
 from aiogram.types import Message
 
-C_TOKEN = tokens.cur_token
+C_TOKEN: str = tokens.cur_token
 
 
 async def currency(message: Message):
-    input_parts = message.get_args().split()[0:]
+    input_parts: List[str] = message.get_args().split()[0:]
 
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by space or try /help")
         return
+    amount: float
+    source_currency: str
+    target_currency: str
     amount, source_currency, target_currency = input_parts
 
     try:
@@ -20,13 +23,13 @@ async def currency(message: Message):
         return
 
     async with aiohttp.ClientSession() as session:
-        url = f"https://v6.exchangerate-api.com/v6/{C_TOKEN}/latest/{source_currency.upper()}"
+        url: str = f"https://v6.exchangerate-api.com/v6/{C_TOKEN}/latest/{source_currency.upper()}"
         async with session.get(url) as response:
             if response.status != 200:
                 await message.reply("Sorry, something went wrong with the currency conversion.")
                 return
-            data = await response.json()
+            data: dict = await response.json()
 
-    rate = data["conversion_rates"][target_currency.upper()]
-    result = amount * rate
+    rate: float = data["conversion_rates"][target_currency.upper()]
+    result: float = amount * rate
     await message.reply(f"<b>💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}\n\n💻 Dev: @apsyhea</b>", parse_mode="HTML")

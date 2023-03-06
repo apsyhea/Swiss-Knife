@@ -3,10 +3,10 @@ import datetime
 import flag
 from aiogram.types import Message
 
-tz_offset = datetime.timedelta(seconds=7200)
-utc_time = datetime.datetime.utcnow()
+tz_offset: datetime.timedelta = datetime.timedelta(seconds=7200)
+utc_time: datetime.datetime = datetime.datetime.utcnow()
 print(utc_time)
-local_time = utc_time + tz_offset
+local_time: datetime.datetime = utc_time + tz_offset
 
 
 async def warmon(message: Message):
@@ -16,10 +16,10 @@ async def warmon(message: Message):
                 await message.reply("Sorry, something went wrong. Server API temporarily May not be available.")
                 return
 
-            data = await response.json()
+            data: dict = await response.json()
 
-    stats = data['data']['stats']
-    stats_str = f"• Personnel Units: {stats['personnel_units']}\n"
+    stats: dict = data['data']['stats']
+    stats_str: str = f"• Personnel Units: {stats['personnel_units']}\n"
     stats_str += f"• Tanks: {stats['tanks']}\n"
     stats_str += f"• Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
     stats_str += f"• Artillery Systems: {stats['artillery_systems']}\n"
@@ -33,7 +33,7 @@ async def warmon(message: Message):
     stats_str += f"• UAV Systems: {stats['uav_systems']}\n"
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
-    start_str = '========RASHISTS=LOSSES========'
-    finish_str = '================================'
+    start_str: str = '========RASHISTS=LOSSES========'
+    finish_str: str = '================================'
 
     await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n{start_str}\n{stats_str}{finish_str}\n🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")

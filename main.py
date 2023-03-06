@@ -14,9 +14,9 @@ from currency import currency
 from iplocate import iplocate
 from alarm import alarm
 
-API_TOKEN = bot_token
-W_TOKEN = weather_token
-C_TOKEN = cur_token
+API_TOKEN: str = bot_token
+W_TOKEN: str = weather_token
+C_TOKEN: str = cur_token
 
 logging.basicConfig(level=logging.INFO)
 
