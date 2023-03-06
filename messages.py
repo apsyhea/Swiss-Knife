@@ -10,5 +10,33 @@ For example:  <code>/currency 1 eur usd</code>
 type: /iplocate [ip address]
 For example: <code>/iplocate 8.8.8.8</code>
 \nUse /warmon to display rashist casualty statistics for the day</b>
+\nUse /alarm to display air alarm in Ukraine
 """
-msg_help = ''
+# msg_help = ''
+
+"""msg_iplocate: dict = {
+    'country': 'Country:',
+    'region': 'Region:',
+    'city': 'City:',
+    'zip': 'Zip Code:',
+    'tz': 'Timezone:',
+    'lan': 'Latitude:',
+    'lon': 'Longitude:',
+    'isp': 'Isp Provider:',
+    'org': 'Organization:',
+    'ip': 'IP Address:',
+}
+
+
+
+msg_emoji: dict = {
+    'region': '🗺',
+    'city': '🌆',
+    'zip': '✉️',
+    'tz': '🕐',
+    'lat': '📍',
+    'lon': '📍',
+    'net': '🌐',
+    'org': ' 🏢',
+    'ip': '🖥',
+}"""
