@@ -8,7 +8,7 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 - /iplocate [ip address] to get information about the location and ISP provider of an IP address.
 - /currency [number][currency][currency] to get currency exchange rates for two currencies.
 - /warmon to get daily casualty statistics for the war in Russia.
-- /alarm to get display rashist casualty statistics for the day
+- /alarm to display air alarm in Ukraine.
 ## Examples
 
 ### /weather Tokyo returns:
