@@ -3,7 +3,7 @@
   hosts: oracle
   tasks:
     - name: Update code from GitHub
-      command: git pull
+      command: git pull github master
       args:
         chdir: /home/apsyhea/Swiss-Knife
 
