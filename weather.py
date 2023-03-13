@@ -8,7 +8,7 @@ from aiogram.types import Message
 W_TOKEN: str = tokens.weather_token
 
 
-async def weather(message: Message):
+async def weather(message: Message) -> None:
     city: str = message.get_args()
 
     async with aiohttp.ClientSession() as session:

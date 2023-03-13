@@ -5,7 +5,7 @@ from aiogram.types import Message
 C_TOKEN: str = tokens.cur_token
 
 
-async def currency(message: Message):
+async def currency(message: Message) -> None:
     input_parts: List[str] = message.get_args().split()[0:]
 
     if len(input_parts) != 3:

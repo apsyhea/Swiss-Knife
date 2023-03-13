@@ -19,15 +19,15 @@ async def is_blocked(ip_or_url):
     return None
 
 
-async def blocklist(message: types.Message):
+async def blocklist(message: types.Message) -> None:
     text = message.get_args()
     item = await is_blocked(text)
     if item:
         alias = item["alias"]
         term = item["term"]
-        urls = "\n".join(item["urls"])
-        ips = "\n".join(item["ips"])
-        msg = f"<b>{alias}</b> is blocked in Ukraine until {term}.\n\nURLs:\n{urls}\n\nIPs:\n{ips}"
+        urls: str = "\n".join(item["urls"])
+        ips: str = "\n".join(item["ips"])
+        msg: str = f"<b>{alias}</b> is blocked in Ukraine until {term}.\n\nURLs:\n{urls}\n\nIPs:\n{ips}"
         await message.reply(msg, parse_mode=ParseMode.HTML)
     else:
         msg = f"{text} is not blocked in Ukraine."

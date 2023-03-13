@@ -3,7 +3,7 @@ import flag
 from aiogram.types import Message
 
 
-async def iplocate(message: Message):
+async def iplocate(message: Message) -> None:
     ip_address: str = message.get_args()
     if not ip_address:
         await message.reply('Please enter an IP address or domain. Try /help', parse_mode='HTML')

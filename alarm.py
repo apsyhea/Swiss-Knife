@@ -10,7 +10,7 @@ from typing import List
 A_TOKEN: str = alarm_token
 
 
-async def send_notification(message: Message, alert_names: List[str]):
+async def send_notification(message: Message, alert_names: List[str]) -> None:
     tz_offset: datetime.timedelta = datetime.timedelta(seconds=7200)
     utc_time: datetime.datetime = datetime.datetime.utcnow()
     local_time: datetime.datetime = utc_time + tz_offset
@@ -18,7 +18,7 @@ async def send_notification(message: Message, alert_names: List[str]):
     await message.reply(f"<b>{flag.flag('UA')} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n⚠️ Air alarm:\n🚨 {alarm_info}</b>", parse_mode='HTML')
 
 
-async def alarm(message: Message):
+async def alarm(message: Message) -> None:
     url: str = 'https://alerts.com.ua/api/states'
     headers: dict = {'X-API-Key': f'{A_TOKEN}'}
     alert_names: List[str] = []

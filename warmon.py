@@ -9,7 +9,7 @@ print(utc_time)
 local_time: datetime.datetime = utc_time + tz_offset
 
 
-async def warmon(message: Message):
+async def warmon(message: Message) -> None:
     async with aiohttp.ClientSession() as session:
         async with session.get("https://russianwarship.rip/api/v2/statistics/latest") as response:
             if response.status != 200:

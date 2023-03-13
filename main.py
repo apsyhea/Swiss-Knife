@@ -27,7 +27,7 @@ dp = Dispatcher(bot, storage=storage)
 
 @dp.message_handler(Text(equals=["/start"], ignore_case=True))
 # Handler for "/start" command
-async def cmd_start(message: Message):
+async def cmd_start(message: Message) -> None:
     """
     Sends a welcome message when the user sends "/start" command
     """
@@ -36,7 +36,7 @@ async def cmd_start(message: Message):
 
 @dp.message_handler(Command("help"))
 # Handler for "/help" command
-async def cmd_help(message: Message):
+async def cmd_help(message: Message) -> None:
     """
     Sends a help message when the user sends "/help" command
     """
@@ -45,7 +45,7 @@ async def cmd_help(message: Message):
 
 @dp.message_handler(Command("weather"))
 # Handler for "/weather" command
-async def cmd_weather(message: Message):
+async def cmd_weather(message: Message) -> None:
     """
     Calls the weather function to provide weather information
     """
@@ -54,7 +54,7 @@ async def cmd_weather(message: Message):
 
 @dp.message_handler(Command("currency"))
 # Handler for "/currency" command
-async def cmd_currency(message: Message):
+async def cmd_currency(message: Message) -> None:
     """
     Calls the currency function to provide currency conversion information
     """
@@ -63,7 +63,7 @@ async def cmd_currency(message: Message):
 
 @dp.message_handler(Command("warmon"))
 # Handler for "/warmon" command
-async def cmd_warmon(message: Message):
+async def cmd_warmon(message: Message) -> None:
     """
     Calls the warmon function to provide weather monitoring information
     """
@@ -72,7 +72,7 @@ async def cmd_warmon(message: Message):
 
 @dp.message_handler(Command("iplocate"))
 # Handler for "/iplocate" command
-async def cmd_iplocate(message: Message):
+async def cmd_iplocate(message: Message) -> None:
     """
     Calls the iplocate function to provide IP location information
     """
@@ -81,7 +81,7 @@ async def cmd_iplocate(message: Message):
 
 @dp.message_handler(Command("alarm"))
 # Handler for "/alarm" command
-async def cmd_alarm(message: Message):
+async def cmd_alarm(message: Message) -> None:
     """
     Calls the alarm function...
     """
@@ -90,7 +90,7 @@ async def cmd_alarm(message: Message):
 
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
 # Handler for all other messages in private chat
-async def handle_all_messages(message: Message):
+async def handle_all_messages(message: Message) -> None:
     """
     Responds with a default message for other messages in private chat
     """
