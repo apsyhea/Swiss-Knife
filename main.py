@@ -13,7 +13,6 @@ from modules.weather import weather
 from modules.currency import currency
 from modules.iplocate import iplocate
 from modules.alarm import alarm
-from proxy import scproxy
 API_TOKEN: str = bot_token
 W_TOKEN: str = weather_token
 C_TOKEN: str = cur_token
@@ -87,13 +86,6 @@ async def cmd_alarm(message: Message) -> None:
     """
     await alarm(message)
 
-@dp.message_handler(Command("proxy"))
-# Handler for "/proxy" command
-async def cmd_proxy(message: Message) -> None:
-    """
-    Calls the proxy function...
-    """
-    await scproxy(message)
 
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
 # Handler for all other messages in private chat
@@ -109,7 +101,6 @@ dp.register_message_handler(currency, commands=['currency'])
 dp.register_message_handler(warmon, commands=['warmon'])
 dp.register_message_handler(iplocate, commands=['iplocate'])
 dp.register_message_handler(alarm, commands=['alarm'])
-dp.register_message_handler(scproxy, commands=['proxy'])
 dp.register_message_handler(
     handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
