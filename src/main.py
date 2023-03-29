@@ -5,7 +5,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters import ChatTypeFilter, Command, Text
 from aiogram.types import ChatType, Message
 # Importing API tokens and keys from a separate module
-from tokens import bot_token, cur_token, weather_token
+from config import bot_token
 # Importing user-defined modules
 import modules.messages as messages
 from modules.warmon import warmon
@@ -13,9 +13,8 @@ from modules.weather import weather
 from modules.currency import currency
 from modules.iplocate import iplocate
 from modules.alarm import alarm
+
 API_TOKEN: str = bot_token
-W_TOKEN: str = weather_token
-C_TOKEN: str = cur_token
 
 logging.basicConfig(level=logging.INFO)
 
