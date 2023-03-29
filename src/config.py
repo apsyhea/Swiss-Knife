@@ -1,0 +1,5 @@
+cur_token: str = 'e358c878817c7b600f6b5f81'
+bot_token: str = '6234709583:AAH9YVhc8Rjy_vslC2-zagtOTRLeOW-cdSo'
+test_token: str = '5837306729:AAFjd63x-6KijAJIv4K5Q_MmQ_73sGkU9xc'
+alarm_token: str = 'e593ac9d867fd5afa97cf9d661681ba7c59e0de6'
+weather_token: str = '1fea6321b3b90e53353c44b86fc64b8e'

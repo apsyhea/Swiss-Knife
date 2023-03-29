@@ -1,11 +1,10 @@
 import aiohttp
-import tokens
 import flag
 import datetime
 from aiogram.types import Message
+from config import weather_token
 
-
-W_TOKEN: str = tokens.weather_token
+W_TOKEN: str = weather_token
 
 
 async def weather(message: Message) -> None:

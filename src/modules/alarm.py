@@ -2,7 +2,7 @@ import json
 import flag
 import aiohttp
 import datetime
-from tokens import alarm_token
+from config import alarm_token
 from aiogram.types import Message
 from typing import List
 
