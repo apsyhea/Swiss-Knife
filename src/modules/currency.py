@@ -1,8 +1,8 @@
-import tokens
 import aiohttp
 from aiogram.types import Message
+from config import cur_token
 
-C_TOKEN: str = tokens.cur_token
+C_TOKEN: str = cur_token
 
 async def currency(message: Message) -> None:
     input_parts: List[str] = message.get_args().split()[0:]
