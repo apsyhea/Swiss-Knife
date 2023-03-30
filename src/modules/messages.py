@@ -13,20 +13,26 @@ For example: <code>/iplocate 8.8.8.8</code>
 \nUse /alarm to display air alarm in Ukraine
 """
 # msg_help = ''
-
-"""msg_iplocate: dict = {
+"""
+msg_weather: dict =  {
+    'day': '🌤️',
+    'temperature': '🌡️',
+    'description': '☁️',
+    'wind_speed': '💨',
+}
+"""
+msg_iplocate: dict = {
     'country': 'Country:',
     'region': 'Region:',
     'city': 'City:',
     'zip': 'Zip Code:',
     'tz': 'Timezone:',
-    'lan': 'Latitude:',
+    'lat': 'Latitude:',
     'lon': 'Longitude:',
     'isp': 'Isp Provider:',
     'org': 'Organization:',
     'ip': 'IP Address:',
 }
-
 
 
 msg_emoji: dict = {
@@ -36,7 +42,7 @@ msg_emoji: dict = {
     'tz': '🕐',
     'lat': '📍',
     'lon': '📍',
-    'net': '🌐',
-    'org': ' 🏢',
+    'isp': '🌐',
+    'org': '🏢',
     'ip': '🖥',
-}"""
+}

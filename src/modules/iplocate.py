@@ -1,6 +1,7 @@
 import aiohttp
 import flag
 from aiogram.types import Message
+from .messages import msg_emoji, msg_iplocate
 
 
 async def iplocate(message: Message) -> None:
@@ -22,15 +23,15 @@ async def iplocate(message: Message) -> None:
 
             date_str: str = f"{flag.flag(json_response['countryCode'])}"
             date_str += f" Country: {json_response['country']}\n"
-            date_str += f"🗺 Region: {json_response['region']}\n"
-            date_str += f"🌆 City: {json_response['city']}\n"
-            date_str += f"✉️ Zip Code: {json_response['zip']}\n"
-            date_str += f"🕐 Timezone: {json_response['timezone']}\n"
-            date_str += f"📍 Latitude: {json_response['lat']}\n"
-            date_str += f"📍 Longitude: {json_response['lon']}\n"
-            date_str += f"🌐 Isp Provider: {json_response['isp']}\n"
-            date_str += f"🏢 Organization: {json_response['org']}\n"
-            date_str += f"🖥 IP Address {json_response['query']}"
+            date_str += f"{msg_emoji['region']} {msg_iplocate['region']} {json_response['region']}\n"
+            date_str += f"{msg_emoji['city']} {msg_iplocate['city']} {json_response['city']}\n"
+            date_str += f"{msg_emoji['zip']} {msg_iplocate['zip']} {json_response['zip']}\n"
+            date_str += f"{msg_emoji['tz']} {msg_iplocate['tz']} {json_response['timezone']}\n"
+            date_str += f"{msg_emoji['lat']} {msg_iplocate['lat']} {json_response['lat']}\n"
+            date_str += f"{msg_emoji['lon']} {msg_iplocate['lon']} {json_response['lon']}\n"
+            date_str += f"{msg_emoji['isp']} {msg_iplocate['isp']} {json_response['isp']}\n"
+            date_str += f"{msg_emoji['org']} {msg_iplocate['org']} {json_response['org']}\n"
+            date_str += f"{msg_emoji['ip']} {msg_iplocate['ip']} {json_response['query']}"
 
             await message.reply(f'<b>{date_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
 

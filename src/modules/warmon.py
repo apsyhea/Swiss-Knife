@@ -36,4 +36,5 @@ async def warmon(message: Message) -> None:
     start_str: str = '=====RASHISTS LOSSES====='
     finish_str: str = '=========================='
 
-    await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n{start_str}\n{stats_str}{finish_str}\n🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
+    await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n\
+        {start_str}\n{stats_str}{finish_str}\\n🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
