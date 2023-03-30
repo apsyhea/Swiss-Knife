@@ -15,7 +15,8 @@ async def send_notification(message: Message, alert_names: List[str]) -> None:
     utc_time: datetime.datetime = datetime.datetime.utcnow()
     local_time: datetime.datetime = utc_time + tz_offset
     alarm_info: str = "\n🚨 ".join(alert_names)
-    await message.reply(f"<b>{flag.flag('UA')} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n⚠️ Air alarm:\n🚨 {alarm_info}\n\n💻 Dev: @apsyhea</b>", parse_mode='HTML')
+    await message.reply(f"<b>{flag.flag('UA')} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\
+        ⚠️ Air alarm:\n🚨 {alarm_info}\n\n💻 Dev: @apsyhea</b>", parse_mode='HTML')
 
 
 async def alarm(message: Message) -> None:
