@@ -41,6 +41,15 @@ async def cmd_help(message: Message) -> None:
     await message.reply(messages.msg_start, parse_mode="HTML")
 
 
+@dp.message_handler(Command("changelog"))
+# Handler for "/help" command
+async def cmd_changelog(message: Message) -> None:
+    """
+    Sends a help message when the user sends "/help" command
+    """
+    await message.reply(messages.msg_changelog, disable_web_page_preview=True, parse_mode="HTML")
+
+
 @dp.message_handler(Command("weather"))
 # Handler for "/weather" command
 async def cmd_weather(message: Message) -> None:
@@ -95,6 +104,7 @@ async def handle_all_messages(message: Message) -> None:
     await message.answer("Sorry, I don't understand. Try /help")
 
 dp.register_message_handler(cmd_help, commands=['help'])
+dp.register_message_handler(cmd_changelog, commands=['changelog'])
 dp.register_message_handler(weather, commands=['weather'])
 dp.register_message_handler(currency, commands=['currency'])
 dp.register_message_handler(warmon, commands=['warmon'])
