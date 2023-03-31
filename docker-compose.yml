@@ -15,4 +15,3 @@ services:
         labels: "mylabel"
         env: "prod"
         tag: "latest"
-        path: "./weather-bot.log"
