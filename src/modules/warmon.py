@@ -21,7 +21,7 @@ async def warmon(message: Message) -> None:
     stats: dict = data['data']['stats']
     stats_str: str = f"• Personnel Units: {stats['personnel_units']}\n"
     stats_str += f"• Tanks: {stats['tanks']}\n"
-    stats_str += f"• Armoured Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
+    stats_str += f"• Arm. Fighting Vehicles: {stats['armoured_fighting_vehicles']}\n"
     stats_str += f"• Artillery Systems: {stats['artillery_systems']}\n"
     stats_str += f"• MLRS: {stats['mlrs']}\n"
     stats_str += f"• AA Warfare Systems: {stats['aa_warfare_systems']}\n"
@@ -33,8 +33,9 @@ async def warmon(message: Message) -> None:
     stats_str += f"• UAV Systems: {stats['uav_systems']}\n"
     stats_str += f"• Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"• ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
-    start_str: str = '=====RASHISTS LOSSES====='
-    finish_str: str = '=========================='
+    start_str: str = '+=+=+=+RASHISTS+LOSSES+=+=+=+'
+    finish_str: str = '+=+=+=+=+=+=+=+=+=+=+=+=+=+=+'
 
     await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n\
-        {start_str}\n{stats_str}{finish_str}\\n🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
+<code>{start_str}\n{stats_str}{finish_str}</code>\n\n\
+🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
