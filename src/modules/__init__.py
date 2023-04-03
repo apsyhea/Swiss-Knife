@@ -15,3 +15,4 @@ from modules.weather import weather
 from modules.currency import currency
 from modules.iplocate import iplocate
 from modules.alarm import alarm
+from modules.blocklist import blocklist
