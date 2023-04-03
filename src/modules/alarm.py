@@ -11,7 +11,7 @@ A_TOKEN: str = alarm_token
 
 
 async def send_notification(message: Message, alert_names: List[str]) -> None:
-    tz_offset: datetime.timedelta = datetime.timedelta(seconds=7200)
+    tz_offset: datetime.timedelta = datetime.timedelta(seconds=10800)
     utc_time: datetime.datetime = datetime.datetime.utcnow()
     local_time: datetime.datetime = utc_time + tz_offset
     alarm_info: str = "\n🚨 ".join(alert_names)
