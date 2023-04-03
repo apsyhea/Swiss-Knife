@@ -3,7 +3,7 @@ import datetime
 import flag
 from aiogram.types import Message
 
-tz_offset: datetime.timedelta = datetime.timedelta(seconds=7200)
+tz_offset: datetime.timedelta = datetime.timedelta(seconds=10800)
 utc_time: datetime.datetime = datetime.datetime.utcnow()
 print(utc_time)
 local_time: datetime.datetime = utc_time + tz_offset
