@@ -26,9 +26,8 @@ async def blocklist(message: types.Message) -> None:
 
         if any(re.search(query, url) for url in urls) or query in ips:
             is_blocked = True
-            await message.reply(f"{query} в блоке")
+            await message.reply(f"{query} IP address blocked on the territory of Ukraine")
             break
     
     if not is_blocked:
-        await message.reply(f"{query} не в блоке")
-
+        await message.reply(f"{query} IP address is not blocked on the territory of Ukraine")
