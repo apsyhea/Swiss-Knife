@@ -95,7 +95,7 @@ async def cmd_block(message: Message) -> None:
     """
     Calls the alarm function...
     """
-    await blocklist(message)
+    await modules.blocklist(message)
 
 
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
@@ -113,7 +113,7 @@ dp.register_message_handler(modules.currency, commands=['currency'])
 dp.register_message_handler(modules.warmon, commands=['warmon'])
 dp.register_message_handler(modules.iplocate, commands=['iplocate'])
 dp.register_message_handler(modules.alarm, commands=['alarm'])
-dp.register_message_handler(blocklist, commands=['block'])
+dp.register_message_handler(modules.blocklist, commands=['block'])
 dp.register_message_handler(
     handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
