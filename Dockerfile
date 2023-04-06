@@ -4,8 +4,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y tzdata
 
+RUN echo "Europe/Kiev" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 RUN python -m venv /app/env
 
@@ -15,5 +17,3 @@ RUN python -m pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python", "src/main.py"]
-
-
