@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN apt-get update && apt-get install -y tzdata
+RUN apt-get update && apt-get install tzdata -y
 
 ENV TZ="Europe/Kiev"
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
