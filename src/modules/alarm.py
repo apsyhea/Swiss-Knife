@@ -34,6 +34,6 @@ async def alarm(message: Message) -> None:
                     alarm_info: str = "\n ".join(alert_names)
                     alarm_info += finish_str
             if alert_names:
-                await message.reply(f'<b>{flag.flag("UA")} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n🚨 Air alarm:\n<code>{start_str} {alarm_info}</code>\n\n💻 Dev: @apsyhea\n</b>', parse_mode="HTML")
+                await message.reply(f'<b>{flag.flag("UA")} {local_time:%Y-%m-%d}\n🚨 Air alarm:\n<code>{start_str} {alarm_info}</code>\n\n💻 Dev: @apsyhea\n</b>', parse_mode="HTML")
 
 
