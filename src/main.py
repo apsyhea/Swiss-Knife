@@ -1,6 +1,6 @@
 """Import necessary libraries and modules."""
-import logging
 import modules
+import logging
 from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters import ChatTypeFilter, Command, Text
@@ -89,6 +89,15 @@ async def cmd_alarm(message: Message) -> None:
     await modules.alarm(message)
 
 
+@dp.message_handler(Command("block"))
+# Handler for "/alarm" command
+async def cmd_block(message: Message) -> None:
+    """
+    Calls the alarm function...
+    """
+    await modules.blocklist(message)
+
+
 @dp.message_handler(ChatTypeFilter(ChatType.PRIVATE), content_types=['text'])
 # Handler for all other messages in private chat
 async def handle_all_messages(message: Message) -> None:
@@ -104,6 +113,7 @@ dp.register_message_handler(modules.currency, commands=['currency'])
 dp.register_message_handler(modules.warmon, commands=['warmon'])
 dp.register_message_handler(modules.iplocate, commands=['iplocate'])
 dp.register_message_handler(modules.alarm, commands=['alarm'])
+dp.register_message_handler(modules.blocklist, commands=['block'])
 dp.register_message_handler(
     handle_all_messages, ChatTypeFilter(ChatType.PRIVATE))
 
