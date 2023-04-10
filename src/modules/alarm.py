@@ -1,19 +1,15 @@
 import json
 import flag
 import aiohttp
-import datetime
+import modules
 from aiogram.types import Message
 from typing import List
 from config import alarm_token
 
-
 A_TOKEN: str = alarm_token
 
-tz_offset: datetime.timedelta = datetime.timedelta(seconds=10800)
-utc_time: datetime.datetime = datetime.datetime.utcnow()
-local_time: datetime.datetime = utc_time + tz_offset
-
 async def alarm(message: Message) -> None:
+    local_time = modules.get_data()
     url: str = 'https://alerts.com.ua/api/states'
     headers: dict = {'X-API-Key': f'{A_TOKEN}'}
     alert_names: List[str] = []

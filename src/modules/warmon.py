@@ -1,14 +1,11 @@
 import aiohttp
-import datetime
+import modules
 import flag
 from aiogram.types import Message
 
-tz_offset: datetime.timedelta = datetime.timedelta(seconds=10800)
-utc_time: datetime.datetime = datetime.datetime.utcnow()
-local_time: datetime.datetime = utc_time + tz_offset
-
 
 async def warmon(message: Message) -> None:
+    local_time = modules.get_data()
     async with aiohttp.ClientSession() as session:
         async with session.get("https://russianwarship.rip/api/v2/statistics/latest") as response:
             if response.status != 200:
@@ -35,6 +32,7 @@ async def warmon(message: Message) -> None:
     header_str: str = 'Rashist loses:'
     start_str: str =  '┏━━━━━━━━━━━━━━━━━━┓'
     finish_str: str = '┗━━━━━━━━━━━━━━━━━━┛'
+
 
     await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n🗑 {header_str}\n\n\
 {start_str}\n{stats_str}{finish_str}\n\n\
