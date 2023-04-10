@@ -1,3 +1,4 @@
+![Иллюстрация к проекту](https://github.com/apsyhea/Swiss-Knife/blob/master/image.jpg)
 # Swiss Knife Telegram Bot
 **Swiss Knife is a versatile Telegram bot that provides useful information such as weather, IP location, currency exchange rates, and daily casualty statistics for the war in Russia.**
 

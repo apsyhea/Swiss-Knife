@@ -6,3 +6,12 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        compress: "true"
+        labels: "mylabel"
+        env: "prod"
+        tag: "latest"

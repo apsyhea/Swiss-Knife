@@ -1,8 +1,8 @@
-import tokens
 import aiohttp
 from aiogram.types import Message
+from config import cur_token
 
-C_TOKEN: str = tokens.cur_token
+C_TOKEN: str = cur_token
 
 async def currency(message: Message) -> None:
     input_parts: List[str] = message.get_args().split()[0:]
@@ -31,4 +31,4 @@ async def currency(message: Message) -> None:
 
     rate: float = data["conversion_rates"][target_currency.upper()]
     result: float = amount * rate
-    await message.reply(f"<b>💵 {amount} {source_currency.upper()} is {result} 💳 {target_currency.upper()}\n\n💻 Dev: @apsyhea</b>", parse_mode="HTML")
+    await message.reply(f"<b>💵 {amount} {source_currency.upper()} is {round(result,2)} 💳 {target_currency.upper()}\n\n💻 Dev: @apsyhea</b>", parse_mode="HTML")

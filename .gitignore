@@ -1,8 +1,9 @@
-venv/
+env/
 __pycache__/
 .vscode/
 proxy.txt
-tokens.py
-test.py
 git-token
 tempCodeRunnerFile.py
+src/config.py
+src/tests.py
+test.py
