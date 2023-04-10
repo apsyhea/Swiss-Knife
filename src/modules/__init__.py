@@ -16,3 +16,4 @@ from modules.currency import currency
 from modules.iplocate import iplocate
 from modules.alarm import alarm
 from modules.blocklist import blocklist
+from modules.timedata import get_data
