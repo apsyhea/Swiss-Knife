@@ -8,13 +8,6 @@ from config import alarm_token
 
 A_TOKEN: str = alarm_token
 
-<<<<<<< HEAD
-=======
-tz_offset: datetime.timedelta = datetime.timedelta(seconds=0)
-utc_time: datetime.datetime = datetime.datetime.now()
-local_time: datetime.datetime = utc_time + tz_offset
-
->>>>>>> c3814ee (tzdata)
 async def alarm(message: Message) -> None:
     local_time = modules.get_data()
     url: str = 'https://alerts.com.ua/api/states'
@@ -36,10 +29,7 @@ async def alarm(message: Message) -> None:
                     alarm_state['changed'] = alarm_state.get('changed', '')
                     alarm_info: str = "\n ".join(alert_names)
                     alarm_info += finish_str
-		    current_time = datetime.datetime.now()
-		    local_time = current_time + tz_offset
-
             if alert_names:
-                await message.reply(f'<b>{flag.flag("UA")} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n\🚨 Air alarm:\n<code>{start_str} {alarm_info}</code>\n\n💻 Dev: @apsyhea\n</b>', parse_mode="HTML")
+                await message.reply(f'<b>{flag.flag("UA")} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n🚨 Air alarm:\n<code>{start_str} {alarm_info}</code>\n\n💻 Dev: @apsyhea\n</b>', parse_mode="HTML")
 
 
