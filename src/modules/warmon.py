@@ -3,6 +3,12 @@ import modules
 import flag
 from aiogram.types import Message
 
+<<<<<<< HEAD
+=======
+tz_offset: datetime.timedelta = datetime.timedelta(seconds=0)
+utc_time: datetime.datetime = datetime.datetime.now()
+local_time: datetime.datetime = utc_time + tz_offset
+>>>>>>> c3814ee (tzdata)
 
 async def warmon(message: Message) -> None:
     local_time = modules.get_data()
@@ -32,6 +38,7 @@ async def warmon(message: Message) -> None:
     header_str: str = 'Rashist loses:'
     start_str: str =  '┏━━━━━━━━━━━━━━━━━━┓'
     finish_str: str = '┗━━━━━━━━━━━━━━━━━━┛'
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
@@ -39,5 +46,11 @@ async def warmon(message: Message) -> None:
 =======
     await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d}\n🗑 {header_str}\n\n\
 >>>>>>> a314ffb (tzdata)
+=======
+    current_time = datetime.datetime.now()
+    local_time = current_time + tz_offset
+    
+    await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n\n\🗑 {header_str}\n\n\
+>>>>>>> c3814ee (tzdata)
 {start_str}\n{stats_str}{finish_str}\n\n\
 🔪 Our russophobia is not enough\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
