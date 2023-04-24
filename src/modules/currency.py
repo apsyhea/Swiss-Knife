@@ -6,7 +6,7 @@ C_TOKEN: str = cur_token
 
 
 async def currency(message: Message) -> None:
-    input_parts: List[str] = message.get_args().split()[0:]
+    input_parts: list[str] = message.get_args().split()[0:]
 
     if len(input_parts) != 3:
         await message.reply("Please enter the amount, source currency, and target currency separated by space or try /help")
