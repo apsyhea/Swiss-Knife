@@ -5,7 +5,7 @@ from .messages import msg_emoji, msg_iplocate
 
 
 async def iplocate(message: Message) -> None:
-    ip_address: str = message.get_args()
+    ip_address: str | None = message.get_args()
     if not ip_address:
         await message.reply('Please enter an IP address or domain. Try /help', parse_mode='HTML')
         return

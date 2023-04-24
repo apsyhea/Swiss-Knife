@@ -8,7 +8,7 @@ W_TOKEN: str = weather_token
 
 
 async def weather(message: Message) -> None:
-    city: str = message.get_args()
+    city: str | None = message.get_args()
 
     async with aiohttp.ClientSession() as session:
         async with session.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={W_TOKEN}&units=metric") as response:
