@@ -8,6 +8,7 @@ from config import alarm_token
 
 A_TOKEN: str = alarm_token
 
+
 async def alarm(message: Message) -> None:
     local_time = modules.get_data()
     url: str = 'https://alerts.com.ua/api/states'
@@ -31,5 +32,3 @@ async def alarm(message: Message) -> None:
                     alarm_info += finish_str
             if alert_names:
                 await message.reply(f'<b>{flag.flag("UA")} {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n🚨 Air alarm:\n<code>{start_str} {alarm_info}</code>\n\n💻 Dev: @apsyhea\n</b>', parse_mode="HTML")
-
-

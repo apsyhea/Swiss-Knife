@@ -34,4 +34,3 @@ async def iplocate(message: Message) -> None:
             date_str += f"{msg_emoji['ip']} {msg_iplocate['ip']} {json_response['query']}"
 
             await message.reply(f'<b>{date_str}\n\n💻 Dev: @apsyhea</b>', parse_mode="HTML")
-
