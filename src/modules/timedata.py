@@ -1,5 +1,6 @@
 import datetime
 
+
 def get_data() -> datetime:
     tz_offset = datetime.timedelta(seconds=10800)
     utc_time = datetime.datetime.utcnow()

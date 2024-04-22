@@ -30,9 +30,8 @@ async def warmon(message: Message) -> None:
     stats_str += f"    • Special Military Equip: {stats['special_military_equip']}\n"
     stats_str += f"    • ATGM/SRBM Systems: {stats['atgm_srbm_systems']}\n"
     header_str: str = 'Rashist loses:'
-    start_str: str =  '┏━━━━━━━━━━━━━━━━━━┓'
+    start_str: str = '┏━━━━━━━━━━━━━━━━━━┓'
     finish_str: str = '┗━━━━━━━━━━━━━━━━━━┛'
-
 
     await message.reply(f'<b> {flag.flag("UA")} On {local_time:%Y-%m-%d} | {local_time:%H:%M:%S}\n🗑 {header_str}\n\n\
 {start_str}\n{stats_str}{finish_str}\n\n\
