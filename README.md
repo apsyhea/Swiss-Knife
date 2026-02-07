@@ -98,3 +98,5 @@ To use Swiss Knife, simply send one of the following commands to the bot:
 
 ### Disclaimer
 **Swiss Knife is not affiliated with any government or military organization. The casualty statistics provided by the bot are for informational purposes only and should not be taken as a comprehensive or accurate representation of the situation in Russia.**
+
+.
